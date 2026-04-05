@@ -1,327 +1,40 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>理想生活</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "PingFang SC", "Microsoft YaHei", sans-serif;
-      line-height: 1.6;
-      color: #333;
-      background-color: #f5f5f5;
-    }
-
-    a { text-decoration: none; color: inherit; }
-
-    header {
-      background: #ffffff;
-      border-bottom: 1px solid #e5e5e5;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-    }
-
-    .nav-container {
-      max-width: 1100px;
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 12px 20px;
-    }
-
-    .logo {
-      font-size: 22px;
-      font-weight: 700;
-      color: #1f4f7f;
-      letter-spacing: 1px;
-    }
-
-    nav ul {
-      list-style: none;
-      display: flex;
-      gap: 20px;
-    }
-
-    nav li a {
-      font-size: 15px;
-      color: #555;
-      padding-bottom: 4px;
-      border-bottom: 2px solid transparent;
-    }
-
-    nav li a:hover {
-      color: #1f4f7f;
-      border-bottom-color: #1f4f7f;
-    }
-
-    .hero {
-      background: url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1600&q=80") center/cover no-repeat;
-      color: #fff;
-      text-align: center;
-      padding: 120px 20px;
-      position: relative;
-    }
-
-    .hero::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.45);
-    }
-
-    .hero-content {
-      position: relative;
-      max-width: 700px;
-      margin: 0 auto;
-    }
-
-    .hero h1 { font-size: 40px; margin-bottom: 16px; }
-    .hero p { font-size: 18px; margin-bottom: 24px; }
-
-    .hero .btn {
-      display: inline-block;
-      padding: 10px 22px;
-      background: #ffb400;
-      color: #222;
-      border-radius: 4px;
-      font-weight: 600;
-      font-size: 15px;
-    }
-
-    .hero .btn:hover { background: #ff9a00; }
-
-    /* 三列区块 */
-    .trip-planning {
-      max-width: 1100px;
-      margin: 60px auto;
-      padding: 0 20px;
-      text-align: center;
-    }
-
-    .section-title {
-      font-size: 28px;
-      color: #1f4f7f;
-      margin-bottom: 10px;
-    }
-
-    .section-subtitle {
-      font-size: 16px;
-      color: #555;
-      margin-bottom: 30px;
-    }
-
-    .trip-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 25px;
-    }
-
-    .trip-card {
-      background: #ffffff;
-      border-radius: 6px;
-      overflow: hidden;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    .trip-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.12);
-    }
-
-    .trip-card img {
-      width: 100%;
-      height: 180px;
-      object-fit: cover;
-    }
-
-    .trip-card h3 {
-      font-size: 20px;
-      margin: 16px 0 8px;
-      color: #1f4f7f;
-    }
-
-    .trip-card p {
-      font-size: 14px;
-      color: #555;
-      padding: 0 16px 20px;
-    }
-
-    @media (max-width: 800px) {
-      .trip-grid { grid-template-columns: 1fr; }
-    }
-
-    /* 主内容区 */
-    main {
-      max-width: 1100px;
-      margin: 40px auto;
-      padding: 0 20px 60px;
-      display: grid;
-      grid-template-columns: 2fr 1fr;
-      gap: 30px;
-    }
-
-    section {
-      margin-bottom: 40px;
-      background: #ffffff;
-      padding: 24px 22px;
-      border-radius: 6px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.04);
-    }
-
-    section h2 {
-      font-size: 22px;
-      margin-bottom: 12px;
-      color: #1f4f7f;
-    }
-
-    section p {
-      font-size: 15px;
-      color: #444;
-    }
-
-    .sidebar {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-    }
-
-    .sidebar-box h3 {
-      font-size: 18px;
-      margin-bottom: 10px;
-      color: #1f4f7f;
-    }
-
-    .sidebar-box p {
-      font-size: 14px;
-      color: #555;
-    }
-
-    footer {
-      text-align: center;
-      padding: 20px;
-      font-size: 13px;
-      color: #777;
-      border-top: 1px solid #e5e5e5;
-      background: #ffffff;
-    }
-
-    @media (max-width: 800px) {
-      main { grid-template-columns: 1fr; }
-      .nav-container { flex-direction: column; gap: 10px; }
-      nav ul { flex-wrap: wrap; justify-content: center; }
-      .hero { padding: 80px 20px; }
-      .hero h1 { font-size: 30px; }
-    }
-  </style>
 </head>
 
 <body>
 
-  <!-- 导航栏 -->
-  <header>
-    <div class="nav-container">
-      <div class="logo">我的人生旅程</div>
-      <nav>
-        <ul>
-          <li><a href="index.html">关于</a></li>
-          <li><a href="should.html">应该做</a></li>
-          <li><a href="like.html">喜欢做</a></li>
-          <li><a href="life-purpose.html">人生意义</a></li>
-          <li><a href="memories.html">时光留影</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
+  <!-- 你的 index 主体内容（Hero 已由 main.js 自动插入） -->
 
-  <!-- Hero -->
-  <section class="hero">
-    <div class="hero-content">
-      <h1>用心走完这一生的旅程</h1>
-      <p>记录我是谁、我在做什么、我想成为什么样的人，以及那些不想忘记的时光。</p>
-      <a href="index.html" class="btn">从「关于」开始</a>
-    </div>
-  </section>
-
-  <!-- 三列区块 -->
   <section class="trip-planning">
     <h2 class="section-title">开始你的思考之旅</h2>
     <p class="section-subtitle">三个简单的原则，帮助你更好地理解自己、规划人生。</p>
 
     <div class="trip-grid">
       <a href="01-simplicity.html" class="trip-card">
-        <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=800&q=80" alt="简单法则">
+        <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=800&q=80">
         <h3>简单法则</h3>
         <p>把复杂的事情拆解，把重要的事情优先，让生活变得更轻盈。</p>
       </a>
 
       <a href="02-the-80-20.html" class="trip-card">
-        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80" alt="8/2 法则">
+        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80">
         <h3>8/2 法则</h3>
         <p>把 80% 的时间留给真正重要的 20% 的事，减少无效努力。</p>
       </a>
 
       <a href="03-system-principle.html" class="trip-card">
-        <img src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=800&q=80" alt="系统法则">
+        <img src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=800&q=80">
         <h3>系统法则</h3>
         <p>建立可持续的系统，而不是依赖短暂的动力，让改变更长久。</p>
       </a>
     </div>
   </section>
 
-  <!-- 主内容 -->
-  <main>
-    <div>
-      <section id="about">
-        <h2>关于</h2>
-        <p>这里是我给自己留的一块小小空间，用来整理思绪、记录成长、回看走过的路。</p>
-      </section>
-
-      <section id="should-do">
-        <h2>应该做</h2>
-        <p>责任、承诺、成长、选择——这些是我认为「应该做」的事。</p>
-      </section>
-
-      <section id="like-do">
-        <h2>喜欢做</h2>
-        <p>旅行、阅读、写作、发呆，或只是一个安静的午后。</p>
-      </section>
-
-      <section id="meaning">
-        <h2>人生意义</h2>
-        <p>也许没有标准答案，但可以有自己的版本。</p>
-      </section>
-
-      <section id="memories">
-        <h2>时光留影</h2>
-        <p>记录那些值得被记住的瞬间。</p>
-      </section>
-    </div>
-
-    <aside class="sidebar">
-      <div class="sidebar-box">
-        <h3>写给未来的自己</h3>
-        <p>希望你在多年之后再回来看这些文字时，会对现在的自己心存感激。</p>
-      </div>
-
-      <div class="sidebar-box">
-        <h3>一些小目标</h3>
-        <p>慢慢来，但不要停下来。</p>
-      </div>
-    </aside>
-  </main>
-
-  <footer>
-    © <span id="year"></span> 我的人生旅程 · 记录、思考、热爱
-  </footer>
-
-  <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-  </script>
-
+  <script src="main.js"></script>
 </body>
 </html>

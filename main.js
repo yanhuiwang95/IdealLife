@@ -1,74 +1,30 @@
-// -----------------------------
-// 1. Insert shared navigation
-// -----------------------------
 document.addEventListener("DOMContentLoaded", function () {
-  const headerHTML = `
-    <header>
-      <div class="nav-container">
-        <div class="logo">理想生活</div>
-        <nav>
-          <ul>
-            <li><a href="index.html">关于</a></li>
-            <li><a href="should.html">应该做</a></li>
-            <li><a href="like.html">喜欢做</a></li>
-            <li><a href="meaning.html">人生意义</a></li>
-            <li><a href="memories.html">时光留影</a></li>
-          </ul>
-        </nav>
-      </div>
-    </header>
-  `;
-  document.body.insertAdjacentHTML("afterbegin", headerHTML);
-});
 
-// -----------------------------
-// 2. Insert shared footer
-// -----------------------------
-document.addEventListener("DOMContentLoaded", function () {
-  const footerHTML = `
-    <footer class="global-footer">
-      © ${new Date().getFullYear()} 我的人生旅程 · 记录、思考、热爱
-    </footer>
-  `;
-  document.body.insertAdjacentHTML("beforeend", footerHTML);
-});
-
-// -----------------------------
-// 3. Make all YouTube iframes responsive
-// -----------------------------
-document.addEventListener("DOMContentLoaded", function () {
-  const iframes = document.querySelectorAll("iframe");
-
-  iframes.forEach(iframe => {
-    const src = iframe.getAttribute("src");
-    if (src && src.includes("youtube.com")) {
-      const wrapper = document.createElement("div");
-      wrapper.className = "video-container";
-      iframe.parentNode.insertBefore(wrapper, iframe);
-      wrapper.appendChild(iframe);
-    }
-  });
-});
-
-// -----------------------------
-// 4. Inject shared CSS styles
-// -----------------------------
-document.addEventListener("DOMContentLoaded", function () {
+  /* ------------------------------------
+     1. Inject Global CSS
+  ------------------------------------ */
   const style = document.createElement("style");
   style.innerHTML = `
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
     body {
-      font-family: Arial, sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "PingFang SC", "Microsoft YaHei", sans-serif;
       line-height: 1.6;
       color: #333;
+      background-color: #f5f5f5;
       max-width: 1200px;
       margin: 0 auto;
-      padding: 20px;
     }
 
+    a { text-decoration: none; color: inherit; }
+
+    /* Header */
     header {
-      border-bottom: 1px solid #eee;
-      padding-bottom: 20px;
-      margin-bottom: 30px;
+      background: #ffffff;
+      border-bottom: 1px solid #e5e5e5;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
     }
 
     .nav-container {
@@ -105,6 +61,44 @@ document.addEventListener("DOMContentLoaded", function () {
       border-bottom-color: #1f4f7f;
     }
 
+    /* Hero */
+    .hero {
+      background: url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1600&q=80") center/cover no-repeat;
+      color: #fff;
+      text-align: center;
+      padding: 120px 20px;
+      position: relative;
+      margin-bottom: 40px;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.45);
+    }
+
+    .hero-content {
+      position: relative;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .hero h1 { font-size: 40px; margin-bottom: 16px; }
+    .hero p { font-size: 18px; margin-bottom: 24px; }
+
+    .hero .btn {
+      display: inline-block;
+      padding: 10px 22px;
+      background: #ffb400;
+      color: #222;
+      border-radius: 4px;
+      font-weight: 600;
+      font-size: 15px;
+    }
+
+    .hero .btn:hover { background: #ff9a00; }
+
     /* Responsive YouTube */
     .video-container {
       position: relative;
@@ -124,20 +118,7 @@ document.addEventListener("DOMContentLoaded", function () {
       height: 100%;
     }
 
-    /* Footer */
-    .global-footer {
-      border-top: 1px solid #eee;
-      padding-top: 20px;
-      margin-top: 40px;
-      text-align: center;
-      color: #666;
-      font-size: 0.9em;
-    }
-
-    /* -----------------------------
-       5. DETAILS (视频看点速览) 样式
-       ----------------------------- */
-
+    /* Details (视频看点速览) */
     details {
       background: #000;
       color: #fff;
@@ -154,15 +135,86 @@ document.addEventListener("DOMContentLoaded", function () {
       color: #fff;
     }
 
-    details[open] {
-      padding-bottom: 16px;
-    }
-
     details p {
       margin-top: 12px;
       color: #fff;
       font-style: italic;
     }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 13px;
+      color: #777;
+      border-top: 1px solid #e5e5e5;
+      background: #ffffff;
+      margin-top: 40px;
+    }
   `;
   document.head.appendChild(style);
+
+
+  /* ------------------------------------
+     2. Insert Header
+  ------------------------------------ */
+  const headerHTML = `
+    <header>
+      <div class="nav-container">
+        <div class="logo">理想生活</div>
+        <nav>
+          <ul>
+            <li><a href="index.html">关于</a></li>
+            <li><a href="should.html">应该做</a></li>
+            <li><a href="like.html">喜欢做</a></li>
+            <li><a href="meaning.html">人生意义</a></li>
+            <li><a href="memories.html">时光留影</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+  `;
+  document.body.insertAdjacentHTML("afterbegin", headerHTML);
+
+
+  /* ------------------------------------
+     3. Insert Hero (shared)
+  ------------------------------------ */
+  const heroHTML = `
+    <section class="hero">
+      <div class="hero-content">
+        <h1>用心走完这一生的旅程</h1>
+        <p>记录我是谁、我在做什么、我想成为什么样的人，以及那些不想忘记的时光。</p>
+        <a href="index.html" class="btn">从「关于」开始</a>
+      </div>
+    </section>
+  `;
+  document.body.insertAdjacentHTML("afterbegin", heroHTML);
+
+
+  /* ------------------------------------
+     4. Make YouTube iframes responsive
+  ------------------------------------ */
+  const iframes = document.querySelectorAll("iframe");
+  iframes.forEach(iframe => {
+    const src = iframe.getAttribute("src");
+    if (src && src.includes("youtube.com")) {
+      const wrapper = document.createElement("div");
+      wrapper.className = "video-container";
+      iframe.parentNode.insertBefore(wrapper, iframe);
+      wrapper.appendChild(iframe);
+    }
+  });
+
+
+  /* ------------------------------------
+     5. Insert Footer
+  ------------------------------------ */
+  const footerHTML = `
+    <footer>
+      © ${new Date().getFullYear()} 我的人生旅程 · 记录、思考、热爱
+    </footer>
+  `;
+  document.body.insertAdjacentHTML("beforeend", footerHTML);
+
 });

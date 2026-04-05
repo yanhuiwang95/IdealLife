@@ -61,7 +61,7 @@ document.addEventListener("DOMContentLoaded", function () {
       border-bottom-color: #1f4f7f;
     }
 
-    /* Hero */
+    /* Hero（通用样式，图片由 data-hero 决定） */
     .hero {
       color: #fff;
       text-align: center;
@@ -88,6 +88,130 @@ document.addEventListener("DOMContentLoaded", function () {
 
     .hero h1 { font-size: 40px; margin-bottom: 16px; }
     .hero p { font-size: 18px; margin-bottom: 24px; }
+
+    .hero .btn {
+      display: inline-block;
+      padding: 10px 22px;
+      background: #ffb400;
+      color: #222;
+      border-radius: 4px;
+      font-weight: 600;
+      font-size: 15px;
+    }
+
+    .hero .btn:hover { background: #ff9a00; }
+
+    /* 三列区块（index 用） */
+    .trip-planning {
+      max-width: 1100px;
+      margin: 60px auto;
+      padding: 0 20px;
+      text-align: center;
+    }
+
+    .section-title {
+      font-size: 28px;
+      color: #1f4f7f;
+      margin-bottom: 10px;
+    }
+
+    .section-subtitle {
+      font-size: 16px;
+      color: #555;
+      margin-bottom: 30px;
+    }
+
+    .trip-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+    }
+
+    .trip-card {
+      background: #ffffff;
+      border-radius: 6px;
+      overflow: hidden;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      text-align: left;
+    }
+
+    .trip-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+    }
+
+    .trip-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+
+    .trip-card h3 {
+      font-size: 20px;
+      margin: 16px 0 8px;
+      color: #1f4f7f;
+      padding: 0 16px;
+    }
+
+    .trip-card p {
+      font-size: 14px;
+      color: #555;
+      padding: 0 16px 20px;
+    }
+
+    /* 主内容区两列布局（index 用） */
+    main {
+      max-width: 1100px;
+      margin: 40px auto;
+      padding: 0 20px 60px;
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 30px;
+    }
+
+    main section {
+      margin-bottom: 40px;
+      background: #ffffff;
+      padding: 24px 22px;
+      border-radius: 6px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+    }
+
+    main section h2 {
+      font-size: 22px;
+      margin-bottom: 12px;
+      color: #1f4f7f;
+    }
+
+    main section p {
+      font-size: 15px;
+      color: #444;
+    }
+
+    .sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .sidebar-box {
+      background: #ffffff;
+      padding: 20px 18px;
+      border-radius: 6px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+    }
+
+    .sidebar-box h3 {
+      font-size: 18px;
+      margin-bottom: 10px;
+      color: #1f4f7f;
+    }
+
+    .sidebar-box p {
+      font-size: 14px;
+      color: #555;
+    }
 
     /* Responsive YouTube */
     .video-container {
@@ -141,6 +265,16 @@ document.addEventListener("DOMContentLoaded", function () {
       background: #ffffff;
       margin-top: 40px;
     }
+
+    /* 响应式 */
+    @media (max-width: 800px) {
+      .trip-grid { grid-template-columns: 1fr; }
+      main { grid-template-columns: 1fr; }
+      .nav-container { flex-direction: column; gap: 10px; }
+      nav ul { flex-wrap: wrap; justify-content: center; }
+      .hero { padding: 80px 20px; }
+      .hero h1 { font-size: 30px; }
+    }
   `;
   document.head.appendChild(style);
 
@@ -151,7 +285,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const headerHTML = `
     <header>
       <div class="nav-container">
-        <div class="logo">理想生活</div>
+        <div class="logo">我的人生旅程</div>
         <nav>
           <ul>
             <li><a href="index.html">关于</a></li>
@@ -168,17 +302,24 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
   /* ------------------------------------
-     3. Insert Hero (image comes from page)
+     3. Insert Hero（从 data-hero 读取图片）
   ------------------------------------ */
   const heroDiv = document.querySelector("[data-hero]");
   if (heroDiv) {
-    const heroImage = heroDiv.getAttribute("data-hero");
+    const heroImage = heroDiv.getAttribute("data-hero") || "";
+    const isIndex = window.location.pathname.endsWith("index.html") || window.location.pathname.endsWith("/") || window.location.pathname === "";
+
+    const title = isIndex ? "用心走完这一生的旅程" : "简单性原则";
+    const subtitle = isIndex
+      ? "记录我是谁、我在做什么、我想成为什么样的人，以及那些不想忘记的时光。"
+      : "让人生变轻盈的第一条法则";
 
     const heroHTML = `
       <section class="hero" style="background-image: url('${heroImage}')">
         <div class="hero-content">
-          <h1>简单性原则</h1>
-          <p>让人生变轻盈的第一条法则</p>
+          <h1>${title}</h1>
+          <p>${subtitle}</p>
+          ${isIndex ? '<a href="index.html" class="btn">从「关于」开始</a>' : ""}
         </div>
       </section>
     `;

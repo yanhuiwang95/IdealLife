@@ -63,12 +63,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
     /* Hero */
     .hero {
-      background: url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1600&q=80") center/cover no-repeat;
       color: #fff;
       text-align: center;
       padding: 120px 20px;
       position: relative;
       margin-bottom: 40px;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
     }
 
     .hero::before {
@@ -86,18 +88,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     .hero h1 { font-size: 40px; margin-bottom: 16px; }
     .hero p { font-size: 18px; margin-bottom: 24px; }
-
-    .hero .btn {
-      display: inline-block;
-      padding: 10px 22px;
-      background: #ffb400;
-      color: #222;
-      border-radius: 4px;
-      font-weight: 600;
-      font-size: 15px;
-    }
-
-    .hero .btn:hover { background: #ff9a00; }
 
     /* Responsive YouTube */
     .video-container {
@@ -178,18 +168,24 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
   /* ------------------------------------
-     3. Insert Hero (shared)
+     3. Insert Hero (image comes from page)
   ------------------------------------ */
-  const heroHTML = `
-    <section class="hero">
-      <div class="hero-content">
-        <h1>用心走完这一生的旅程</h1>
-        <p>记录我是谁、我在做什么、我想成为什么样的人，以及那些不想忘记的时光。</p>
-        <a href="index.html" class="btn">从「关于」开始</a>
-      </div>
-    </section>
-  `;
-  document.body.insertAdjacentHTML("afterbegin", heroHTML);
+  const heroDiv = document.querySelector("[data-hero]");
+  if (heroDiv) {
+    const heroImage = heroDiv.getAttribute("data-hero");
+
+    const heroHTML = `
+      <section class="hero" style="background-image: url('${heroImage}')">
+        <div class="hero-content">
+          <h1>简单性原则</h1>
+          <p>让人生变轻盈的第一条法则</p>
+        </div>
+      </section>
+    `;
+
+    heroDiv.insertAdjacentHTML("afterend", heroHTML);
+    heroDiv.remove();
+  }
 
 
   /* ------------------------------------

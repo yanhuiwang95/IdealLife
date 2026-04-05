@@ -285,7 +285,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const headerHTML = `
     <header>
       <div class="nav-container">
-        <div class="logo">我的人生旅程</div>
+        <div class="logo">理想生活</div>
         <nav>
           <ul>
             <li><a href="index.html">关于</a></li>

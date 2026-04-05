@@ -309,7 +309,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const heroImage = heroDiv.getAttribute("data-hero") || "";
     const isIndex = window.location.pathname.endsWith("index.html") || window.location.pathname.endsWith("/") || window.location.pathname === "";
 
-    const title = isIndex ? "用心走完这一生的旅程" : "简单性原则";
+    const title = isIndex ? "构建理想生活" : "简单性原则";
     const subtitle = isIndex
       ? "记录我是谁、我在做什么、我想成为什么样的人，以及那些不想忘记的时光。"
       : "让人生变轻盈的第一条法则";
@@ -319,7 +319,7 @@ document.addEventListener("DOMContentLoaded", function () {
         <div class="hero-content">
           <h1>${title}</h1>
           <p>${subtitle}</p>
-          ${isIndex ? '<a href="index.html" class="btn">从「关于」开始</a>' : ""}
+          ${isIndex ? '<a href="index.html" class="btn">从「当下」开始</a>' : ""}
         </div>
       </section>
     `;

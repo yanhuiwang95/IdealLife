@@ -18,7 +18,6 @@ document.addEventListener("DOMContentLoaded", function () {
       </div>
     </header>
   `;
-
   document.body.insertAdjacentHTML("afterbegin", headerHTML);
 });
 
@@ -31,7 +30,6 @@ document.addEventListener("DOMContentLoaded", function () {
       © ${new Date().getFullYear()} 我的人生旅程 · 记录、思考、热爱
     </footer>
   `;
-
   document.body.insertAdjacentHTML("beforeend", footerHTML);
 });
 
@@ -43,11 +41,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
   iframes.forEach(iframe => {
     const src = iframe.getAttribute("src");
-
     if (src && src.includes("youtube.com")) {
       const wrapper = document.createElement("div");
       wrapper.className = "video-container";
-
       iframe.parentNode.insertBefore(wrapper, iframe);
       wrapper.appendChild(iframe);
     }
@@ -109,6 +105,7 @@ document.addEventListener("DOMContentLoaded", function () {
       border-bottom-color: #1f4f7f;
     }
 
+    /* Responsive YouTube */
     .video-container {
       position: relative;
       width: 100%;
@@ -127,6 +124,7 @@ document.addEventListener("DOMContentLoaded", function () {
       height: 100%;
     }
 
+    /* Footer */
     .global-footer {
       border-top: 1px solid #eee;
       padding-top: 20px;
@@ -134,6 +132,36 @@ document.addEventListener("DOMContentLoaded", function () {
       text-align: center;
       color: #666;
       font-size: 0.9em;
+    }
+
+    /* -----------------------------
+       5. DETAILS (视频看点速览) 样式
+       ----------------------------- */
+
+    details {
+      background: #000;
+      color: #fff;
+      font-style: italic;
+      padding: 12px 16px;
+      border-radius: 8px;
+      margin: 20px 0;
+    }
+
+    details summary {
+      cursor: pointer;
+      font-weight: bold;
+      font-style: normal;
+      color: #fff;
+    }
+
+    details[open] {
+      padding-bottom: 16px;
+    }
+
+    details p {
+      margin-top: 12px;
+      color: #fff;
+      font-style: italic;
     }
   `;
   document.head.appendChild(style);

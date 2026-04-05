@@ -70,20 +70,20 @@
 <p class="">这些"应该做的事"仅凭意志力来坚持是不能持久的，因为意志力会消耗能量，能量会耗尽；但如果能让它们变得简单，开始就会很容易，慢慢养成习惯，坚持就是自然而然的事。</p>
 <!-- /wp:paragraph -->
 
-<iframe id="ytplayer" width="560" height="315"
-src="https://www.youtube.com/embed/PZ7lDrwYdZc"
-frameborder="0" allowfullscreen></iframe>
+<iframe class="ytplayer" src="https://www.youtube.com/embed/PZ7lDrwYdZc"></iframe>
 
-<div id="fallback" style="display:none;">
-  无法加载视频？<a href="https://www.youtube.com/watch?v=PZ7lDrwYdZc" target="_blank">点击这里在 YouTube 打开</a>
+<div class="fallback" style="display:none;">
+  无法加载视频？请点击查看原始链接。
 </div>
 
 <script>
-  const iframe = document.getElementById("ytplayer");
-  iframe.onerror = function() {
-    document.getElementById("fallback").style.display = "block";
-  };
+  document.querySelectorAll(".ytplayer").forEach((iframe, index) => {
+    iframe.onerror = function() {
+      document.querySelectorAll(".fallback")[index].style.display = "block";
+    };
+  });
 </script>
+
 
 
 
@@ -168,7 +168,7 @@ frameborder="0" allowfullscreen></iframe>
 <!-- wp:paragraph -->
 <p class="">帮助别人不一定要去远方做公益，给朋友提供建议，也是帮助；<br>建立影响力不一定要成为专家，在社交媒体上分享经验，可能就会启发别人；<br>维系关系也不一定要组织大型聚会，发一条关心的消息，可能会让人感到温暖。</p>
 <!-- /wp:paragraph -->
-
+<iframe class="ytplayer" src="https://www.youtube.com/embed/r3Xgi9i9zDM"></iframe>
 <!-- wp:embed {"url":"https://www.youtube.com/watch?v=r3Xgi9i9zDM","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
 <figure class="wp-embed-aspect-16-9 wp-has-aspect-ratio wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube"><div class="wp-block-embed__wrapper">
 https://www.youtube.com/watch?v=r3Xgi9i9zDM

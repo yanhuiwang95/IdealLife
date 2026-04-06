@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
 
   /* ------------------------------------
-     1. Inject Global CSS
+     1. Inject Global CSS (Golden Reading Width)
   ------------------------------------ */
   const style = document.createElement("style");
   style.innerHTML = `
@@ -9,11 +9,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "PingFang SC", "Microsoft YaHei", sans-serif;
-      line-height: 1.6;
+      line-height: 1.85;
       color: #333;
       background-color: #f5f5f5;
-      max-width: 1200px;
-      margin: 0 auto;
     }
 
     a { text-decoration: none; color: inherit; }
@@ -28,7 +26,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     .nav-container {
-      max-width: 1100px;
+      max-width: 1200px;
       margin: 0 auto;
       display: flex;
       align-items: center;
@@ -61,7 +59,7 @@ document.addEventListener("DOMContentLoaded", function () {
       border-bottom-color: #1f4f7f;
     }
 
-    /* Hero（通用样式，图片由 data-hero 决定） */
+    /* Hero */
     .hero {
       color: #fff;
       text-align: center;
@@ -99,11 +97,9 @@ document.addEventListener("DOMContentLoaded", function () {
       font-size: 15px;
     }
 
-    .hero .btn:hover { background: #ff9a00; }
-
-    /* 三列区块（index 用） */
+    /* 三列区块（保持全宽） */
     .trip-planning {
-      max-width: 1100px;
+      max-width: 1200px;
       margin: 60px auto;
       padding: 0 20px;
       text-align: center;
@@ -160,36 +156,31 @@ document.addEventListener("DOMContentLoaded", function () {
       padding: 0 16px 20px;
     }
 
-    /* 主内容区两列布局（index 用） */
+    /* 黄金阅读宽度内容区 */
     main {
-      max-width: 1100px;
+      max-width: 760px; /* 黄金阅读宽度 */
       margin: 40px auto;
       padding: 0 20px 60px;
-      display: grid;
-      grid-template-columns: 2fr 1fr;
-      gap: 30px;
     }
 
     main section {
       margin-bottom: 40px;
       background: #ffffff;
-      padding: 24px 22px;
+      padding: 28px 26px;
       border-radius: 6px;
       box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+      font-size: 17px;
     }
 
     main section h2 {
-      font-size: 22px;
-      margin-bottom: 12px;
+      font-size: 24px;
+      margin-bottom: 16px;
       color: #1f4f7f;
     }
 
-    main section p {
-      font-size: 15px;
-      color: #444;
-    }
-
+    /* Sidebar 自动下移（黄金阅读宽度不需要两列） */
     .sidebar {
+      margin-top: 40px;
       display: flex;
       flex-direction: column;
       gap: 20px;
@@ -200,17 +191,6 @@ document.addEventListener("DOMContentLoaded", function () {
       padding: 20px 18px;
       border-radius: 6px;
       box-shadow: 0 2px 4px rgba(0,0,0,0.04);
-    }
-
-    .sidebar-box h3 {
-      font-size: 18px;
-      margin-bottom: 10px;
-      color: #1f4f7f;
-    }
-
-    .sidebar-box p {
-      font-size: 14px;
-      color: #555;
     }
 
     /* Responsive YouTube */
@@ -232,7 +212,7 @@ document.addEventListener("DOMContentLoaded", function () {
       height: 100%;
     }
 
-    /* Details (视频看点速览) */
+    /* Details */
     details {
       background: #000;
       color: #fff;
@@ -265,16 +245,6 @@ document.addEventListener("DOMContentLoaded", function () {
       background: #ffffff;
       margin-top: 40px;
     }
-
-    /* 响应式 */
-    @media (max-width: 800px) {
-      .trip-grid { grid-template-columns: 1fr; }
-      main { grid-template-columns: 1fr; }
-      .nav-container { flex-direction: column; gap: 10px; }
-      nav ul { flex-wrap: wrap; justify-content: center; }
-      .hero { padding: 80px 20px; }
-      .hero h1 { font-size: 30px; }
-    }
   `;
   document.head.appendChild(style);
 
@@ -282,10 +252,10 @@ document.addEventListener("DOMContentLoaded", function () {
   /* ------------------------------------
      2. Insert Header
   ------------------------------------ */
-  const headerHTML = `
+  document.body.insertAdjacentHTML("afterbegin", `
     <header>
       <div class="nav-container">
-        <div class="logo">理想生活</div>
+        <div class="logo">我的人生旅程</div>
         <nav>
           <ul>
             <li><a href="index.html">关于</a></li>
@@ -297,19 +267,22 @@ document.addEventListener("DOMContentLoaded", function () {
         </nav>
       </div>
     </header>
-  `;
-  document.body.insertAdjacentHTML("afterbegin", headerHTML);
+  `);
 
 
   /* ------------------------------------
-     3. Insert Hero（从 data-hero 读取图片）
+     3. Insert Hero（从 data-hero 读取）
   ------------------------------------ */
   const heroDiv = document.querySelector("[data-hero]");
   if (heroDiv) {
-    const heroImage = heroDiv.getAttribute("data-hero") || "";
-    const isIndex = window.location.pathname.endsWith("index.html") || window.location.pathname.endsWith("/") || window.location.pathname === "";
+    const heroImage = heroDiv.getAttribute("data-hero");
 
-    const title = isIndex ? "构建理想生活" : "简单性原则";
+    const isIndex =
+      window.location.pathname.endsWith("index.html") ||
+      window.location.pathname === "/" ||
+      window.location.pathname === "";
+
+    const title = isIndex ? "用心走完这一生的旅程" : "简单性原则";
     const subtitle = isIndex
       ? "记录我是谁、我在做什么、我想成为什么样的人，以及那些不想忘记的时光。"
       : "让人生变轻盈的第一条法则";
@@ -319,7 +292,7 @@ document.addEventListener("DOMContentLoaded", function () {
         <div class="hero-content">
           <h1>${title}</h1>
           <p>${subtitle}</p>
-          ${isIndex ? '<a href="index.html" class="btn">从「当下」开始</a>' : ""}
+          ${isIndex ? '<a href="index.html" class="btn">从「关于」开始</a>' : ""}
         </div>
       </section>
     `;
@@ -330,7 +303,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
   /* ------------------------------------
-     4. Make YouTube iframes responsive
+     4. Make YouTube responsive
   ------------------------------------ */
   const iframes = document.querySelectorAll("iframe");
   iframes.forEach(iframe => {
@@ -347,11 +320,10 @@ document.addEventListener("DOMContentLoaded", function () {
   /* ------------------------------------
      5. Insert Footer
   ------------------------------------ */
-  const footerHTML = `
+  document.body.insertAdjacentHTML("beforeend", `
     <footer>
       © ${new Date().getFullYear()} 我的人生旅程 · 记录、思考、热爱
     </footer>
-  `;
-  document.body.insertAdjacentHTML("beforeend", footerHTML);
+  `);
 
 });

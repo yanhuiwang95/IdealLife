@@ -221,28 +221,33 @@ document.addEventListener("DOMContentLoaded", function () {
       height: 100%;
     }
 
-    /* Details（白底、无斜体） */
+    /* Details（黑底白字，无斜体） */
+    details,
+    details * {
+      background: #000 !important;
+      color: #fff !important;
+      font-style: normal !important;
+    }
+
     details {
-      background: #fff;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      padding: 14px 18px;
-      margin: 20px 0;
-      font-style: normal;
-      color: #333;
+      border-radius: 8px !important;
+      padding: 14px 18px !important;
+      margin: 20px 0 !important;
+      border: none !important;
     }
 
     details summary {
-      cursor: pointer;
-      font-weight: 600;
-      font-size: 18px;
-      color: #1f4f7f;
+      cursor: pointer !important;
+      font-weight: 700 !important;
+      font-size: 18px !important;
+      color: #fff !important;
     }
 
     details p {
-      margin-top: 12px;
-      font-size: 16px;
-      line-height: 1.8;
+      margin-top: 12px !important;
+      font-size: 16px !important;
+      line-height: 1.8 !important;
+      color: #fff !important;
     }
 
     /* Footer */

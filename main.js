@@ -1,17 +1,26 @@
 document.addEventListener("DOMContentLoaded", function () {
 
   /* ------------------------------------
-     1. Inject Global CSS (Golden Reading Width)
+     1. Inject Global CSS (Golden Reading Width + Handwriting Titles)
   ------------------------------------ */
   const style = document.createElement("style");
   style.innerHTML = `
+    /* Import Handwriting + Reading Fonts */
+    @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Noto+Serif:wght@400;600&display=swap');
+
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "PingFang SC", "Microsoft YaHei", sans-serif;
+      font-family: "Noto Serif", serif;
+      font-size: 18px;
       line-height: 1.85;
       color: #333;
       background-color: #f5f5f5;
+    }
+
+    h1, h2, h3 {
+      font-family: "Caveat", cursive;
+      letter-spacing: 0.5px;
     }
 
     a { text-decoration: none; color: inherit; }
@@ -35,10 +44,10 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     .logo {
-      font-size: 22px;
-      font-weight: 700;
+      font-size: 26px;
+      font-family: "Caveat", cursive;
+      font-weight: 600;
       color: #1f4f7f;
-      letter-spacing: 1px;
     }
 
     nav ul {
@@ -48,7 +57,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     nav li a {
-      font-size: 15px;
+      font-size: 16px;
       color: #555;
       padding-bottom: 4px;
       border-bottom: 2px solid transparent;
@@ -84,8 +93,8 @@ document.addEventListener("DOMContentLoaded", function () {
       margin: 0 auto;
     }
 
-    .hero h1 { font-size: 40px; margin-bottom: 16px; }
-    .hero p { font-size: 18px; margin-bottom: 24px; }
+    .hero h1 { font-size: 52px; margin-bottom: 16px; }
+    .hero p { font-size: 22px; margin-bottom: 24px; }
 
     .hero .btn {
       display: inline-block;
@@ -94,7 +103,7 @@ document.addEventListener("DOMContentLoaded", function () {
       color: #222;
       border-radius: 4px;
       font-weight: 600;
-      font-size: 15px;
+      font-size: 16px;
     }
 
     /* 三列区块（保持全宽） */
@@ -106,13 +115,13 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     .section-title {
-      font-size: 28px;
+      font-size: 36px;
       color: #1f4f7f;
       margin-bottom: 10px;
     }
 
     .section-subtitle {
-      font-size: 16px;
+      font-size: 18px;
       color: #555;
       margin-bottom: 30px;
     }
@@ -144,21 +153,21 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     .trip-card h3 {
-      font-size: 20px;
+      font-size: 26px;
       margin: 16px 0 8px;
       color: #1f4f7f;
       padding: 0 16px;
     }
 
     .trip-card p {
-      font-size: 14px;
+      font-size: 15px;
       color: #555;
       padding: 0 16px 20px;
     }
 
     /* 黄金阅读宽度内容区 */
     main {
-      max-width: 760px; /* 黄金阅读宽度 */
+      max-width: 760px;
       margin: 40px auto;
       padding: 0 20px 60px;
     }
@@ -169,16 +178,16 @@ document.addEventListener("DOMContentLoaded", function () {
       padding: 28px 26px;
       border-radius: 6px;
       box-shadow: 0 2px 4px rgba(0,0,0,0.04);
-      font-size: 17px;
+      font-size: 18px;
     }
 
     main section h2 {
-      font-size: 24px;
+      font-size: 36px;
       margin-bottom: 16px;
       color: #1f4f7f;
     }
 
-    /* Sidebar 自动下移（黄金阅读宽度不需要两列） */
+    /* Sidebar 下移 */
     .sidebar {
       margin-top: 40px;
       display: flex;
@@ -212,34 +221,35 @@ document.addEventListener("DOMContentLoaded", function () {
       height: 100%;
     }
 
-    /* Details */
+    /* Details（白底、无斜体） */
     details {
-      background: #000;
-      color: #fff;
-      font-style: italic;
-      padding: 12px 16px;
+      background: #fff;
+      border: 1px solid #ddd;
       border-radius: 8px;
+      padding: 14px 18px;
       margin: 20px 0;
+      font-style: normal;
+      color: #333;
     }
 
     details summary {
       cursor: pointer;
-      font-weight: bold;
-      font-style: normal;
-      color: #fff;
+      font-weight: 600;
+      font-size: 18px;
+      color: #1f4f7f;
     }
 
     details p {
       margin-top: 12px;
-      color: #fff;
-      font-style: italic;
+      font-size: 16px;
+      line-height: 1.8;
     }
 
     /* Footer */
     footer {
       text-align: center;
       padding: 20px;
-      font-size: 13px;
+      font-size: 14px;
       color: #777;
       border-top: 1px solid #e5e5e5;
       background: #ffffff;

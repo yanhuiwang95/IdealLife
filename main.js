@@ -234,7 +234,63 @@ document.addEventListener("DOMContentLoaded", function () {
       height: 100%;
     }
 
-    /* Details（黑底白字，无斜体） */
+    /* ------------------------------------
+       列表优化（你要求的全部增强）
+    ------------------------------------ */
+
+    /* 整体缩进 + 行距 */
+    body.article ol,
+    body.article ul {
+      padding-left: 32px;
+      margin: 18px 0;
+    }
+
+    body.article li {
+      margin-bottom: 10px;
+      line-height: 1.75;
+      position: relative;
+      padding-left: 14px;
+    }
+
+    /* Notion 风格左侧竖线 */
+    body.article li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 6px;
+      bottom: 6px;
+      width: 3px;
+      background: #e0e0e0;
+      border-radius: 2px;
+    }
+
+    /* 柔和圆点 */
+    body.article ul li::marker {
+      color: #888;
+      font-size: 0.9em;
+    }
+
+    /* 数字列表使用 Caveat 手写体 */
+    body.article ol li::marker {
+      font-family: "Caveat", cursive;
+      font-size: 1.2em;
+      color: #1f4f7f;
+    }
+
+    /* details 内部列表也缩进 */
+    details ol,
+    details ul {
+      padding-left: 32px !important;
+    }
+
+    details li {
+      margin-bottom: 10px !important;
+      line-height: 1.75 !important;
+    }
+
+    /* ------------------------------------
+       details 黑底白字 + smooth 动画
+    ------------------------------------ */
     details,
     details * {
       background: #000 !important;
@@ -247,6 +303,13 @@ document.addEventListener("DOMContentLoaded", function () {
       padding: 16px 20px !important;
       margin: 24px 0 !important;
       border: none !important;
+      overflow: hidden;
+      transition: max-height 0.35s ease;
+      max-height: 48px;
+    }
+
+    details[open] {
+      max-height: 2000px;
     }
 
     details summary {
@@ -348,7 +411,21 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
   /* ------------------------------------
-     6. Insert Footer
+     6. details smooth animation JS
+  ------------------------------------ */
+  document.querySelectorAll("details").forEach(d => {
+    d.addEventListener("toggle", () => {
+      if (d.open) {
+        d.style.maxHeight = d.scrollHeight + "px";
+      } else {
+        d.style.maxHeight = "48px";
+      }
+    });
+  });
+
+
+  /* ------------------------------------
+     7. Insert Footer
   ------------------------------------ */
   document.body.insertAdjacentHTML("beforeend", `
     <footer>

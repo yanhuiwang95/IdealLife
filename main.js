@@ -95,14 +95,30 @@ document.addEventListener("DOMContentLoaded", function () {
     .hero h1 { font-size: 52px; margin-bottom: 16px; }
     .hero p { font-size: 22px; margin-bottom: 24px; }
 
-    /* 黄金阅读宽度 */
-    main {
+    /* -------------------------------
+       INDEX 页面（全宽布局）
+    -------------------------------- */
+    body.index main {
+      max-width: 1200px;
+      padding: 0 20px 60px;
+    }
+
+    body.index img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+    }
+
+    /* -------------------------------
+       文章页面（黄金阅读宽度）
+    -------------------------------- */
+    body.article main {
       max-width: 760px;
       margin: 40px auto;
       padding: 0 20px 60px;
     }
 
-    main section, article {
+    body.article article {
       background: #ffffff;
       padding: 28px 26px;
       border-radius: 6px;
@@ -110,30 +126,34 @@ document.addEventListener("DOMContentLoaded", function () {
       margin-bottom: 40px;
     }
 
-    /* 图片自动缩放 */
-    img {
+    /* 图片自动缩放（文章页） */
+    body.article img {
       max-width: 100%;
       height: auto;
       display: block;
-      margin: 20px auto;
+      margin: 24px auto;
       border-radius: 8px;
     }
 
-    /* 表格优化 */
-    table {
+    /* 表格优化（文章页） */
+    body.article table {
       width: 100%;
       border-collapse: collapse;
-      margin: 20px 0;
+      margin: 24px 0;
       background: #fff;
+      border-radius: 8px;
+      overflow: hidden;
     }
 
-    table td, table th {
-      padding: 12px 16px;
+    body.article table td, 
+    body.article table th {
+      padding: 14px 18px;
       border: 1px solid #ddd;
       font-size: 16px;
+      vertical-align: top;
     }
 
-    table tr:nth-child(even) {
+    body.article table tr:nth-child(even) {
       background: #fafafa;
     }
 
@@ -145,7 +165,7 @@ document.addEventListener("DOMContentLoaded", function () {
       height: 0;
       overflow: hidden;
       border-radius: 8px;
-      margin: 20px 0;
+      margin: 24px 0;
     }
 
     .video-container iframe {
@@ -166,8 +186,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     details {
       border-radius: 8px !important;
-      padding: 14px 18px !important;
-      margin: 20px 0 !important;
+      padding: 16px 20px !important;
+      margin: 24px 0 !important;
       border: none !important;
     }
 
@@ -199,7 +219,19 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
   /* ------------------------------------
-     2. Insert Header
+     2. Detect Page Type (index / article)
+  ------------------------------------ */
+  const path = window.location.pathname;
+
+  if (path.includes("index") || path === "/" || path === "") {
+    document.body.classList.add("index");
+  } else {
+    document.body.classList.add("article");
+  }
+
+
+  /* ------------------------------------
+     3. Insert Header
   ------------------------------------ */
   document.body.insertAdjacentHTML("afterbegin", `
     <header>
@@ -220,50 +252,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
   /* ------------------------------------
-     3. Insert Hero（支持 data-title / data-subtitle）
+     4. Insert Hero（支持 data-title / data-subtitle）
   ------------------------------------ */
   const heroDiv = document.querySelector("[data-hero]");
   if (heroDiv) {
     const heroImage = heroDiv.getAttribute("data-hero");
-    const title = heroDiv.getAttribute("data-title") || "我的人生旅程";
+    const title = heroDiv.getAttribute("data-title") || "";
     const subtitle = heroDiv.getAttribute("data-subtitle") || "";
 
     const heroHTML = `
-      <section class="hero" style="background-image: url('${heroImage}')">
-        <div class="hero-content">
-          <h1>${title}</h1>
-          <p>${subtitle}</p>
-        </div>
-      </section>
-    `;
-
-    heroDiv.insertAdjacentHTML("afterend", heroHTML);
-    heroDiv.remove();
-  }
-
-
-  /* ------------------------------------
-     4. Make YouTube responsive
-  ------------------------------------ */
-  const iframes = document.querySelectorAll("iframe");
-  iframes.forEach(iframe => {
-    const src = iframe.getAttribute("src");
-    if (src && src.includes("youtube.com")) {
-      const wrapper = document.createElement("div");
-      wrapper.className = "video-container";
-      iframe.parentNode.insertBefore(wrapper, iframe);
-      wrapper.appendChild(iframe);
-    }
-  });
-
-
-  /* ------------------------------------
-     5. Insert Footer
-  ------------------------------------ */
-  document.body.insertAdjacentHTML("beforeend", `
-    <footer>
-      © ${new Date().getFullYear()} 我的人生旅程 · 记录、思考、热爱
-    </footer>
-  `);
-
-});

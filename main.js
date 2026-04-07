@@ -88,37 +88,21 @@ document.addEventListener("DOMContentLoaded", function () {
 
     .hero-content {
       position: relative;
-      max-width: 700px;
+      max-width: 720px;
       margin: 0 auto;
     }
 
     .hero h1 { font-size: 52px; margin-bottom: 16px; }
     .hero p { font-size: 22px; margin-bottom: 24px; }
 
-    /* -------------------------------
-       INDEX 页面（全宽布局）
-    -------------------------------- */
-    body.index main {
-      max-width: 1200px;
-      padding: 0 20px 60px;
-    }
-
-    body.index img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 8px;
-    }
-
-    /* -------------------------------
-       文章页面（黄金阅读宽度）
-    -------------------------------- */
-    body.article main {
-      max-width: 760px;
+    /* 黄金阅读宽度（稍微加宽版） */
+    main {
+      max-width: 840px;
       margin: 40px auto;
       padding: 0 20px 60px;
     }
 
-    body.article article {
+    article {
       background: #ffffff;
       padding: 28px 26px;
       border-radius: 6px;
@@ -126,8 +110,67 @@ document.addEventListener("DOMContentLoaded", function () {
       margin-bottom: 40px;
     }
 
-    /* 图片自动缩放（文章页） */
-    body.article img {
+    /* index 页三列区块（你原来的设计） */
+    .trip-planning {
+      max-width: 1200px;
+      margin: 60px auto;
+      padding: 0 20px;
+      text-align: center;
+    }
+
+    .section-title {
+      font-size: 36px;
+      color: #1f4f7f;
+      margin-bottom: 10px;
+    }
+
+    .section-subtitle {
+      font-size: 18px;
+      color: #555;
+      margin-bottom: 30px;
+    }
+
+    .trip-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+    }
+
+    .trip-card {
+      background: #ffffff;
+      border-radius: 6px;
+      overflow: hidden;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      text-align: left;
+    }
+
+    .trip-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+    }
+
+    .trip-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+
+    .trip-card h3 {
+      font-size: 26px;
+      margin: 16px 0 8px;
+      color: #1f4f7f;
+      padding: 0 16px;
+    }
+
+    .trip-card p {
+      font-size: 15px;
+      color: #555;
+      padding: 0 16px 20px;
+    }
+
+    /* 图片自动缩放（文章页 & 其他页通用） */
+    img {
       max-width: 100%;
       height: auto;
       display: block;
@@ -135,8 +178,8 @@ document.addEventListener("DOMContentLoaded", function () {
       border-radius: 8px;
     }
 
-    /* 表格优化（文章页） */
-    body.article table {
+    /* 表格优化（主要影响文章页） */
+    table {
       width: 100%;
       border-collapse: collapse;
       margin: 24px 0;
@@ -145,15 +188,15 @@ document.addEventListener("DOMContentLoaded", function () {
       overflow: hidden;
     }
 
-    body.article table td, 
-    body.article table th {
+    table td, 
+    table th {
       padding: 14px 18px;
       border: 1px solid #ddd;
       font-size: 16px;
       vertical-align: top;
     }
 
-    body.article table tr:nth-child(even) {
+    table tr:nth-child(even) {
       background: #fafafa;
     }
 
@@ -219,19 +262,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
   /* ------------------------------------
-     2. Detect Page Type (index / article)
-  ------------------------------------ */
-  const path = window.location.pathname;
-
-  if (path.includes("index") || path === "/" || path === "") {
-    document.body.classList.add("index");
-  } else {
-    document.body.classList.add("article");
-  }
-
-
-  /* ------------------------------------
-     3. Insert Header
+     2. Insert Header
   ------------------------------------ */
   document.body.insertAdjacentHTML("afterbegin", `
     <header>
@@ -252,7 +283,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
   /* ------------------------------------
-     4. Insert Hero（支持 data-title / data-subtitle）
+     3. Insert Hero（支持 data-title / data-subtitle）
   ------------------------------------ */
   const heroDiv = document.querySelector("[data-hero]");
   if (heroDiv) {
@@ -261,3 +292,41 @@ document.addEventListener("DOMContentLoaded", function () {
     const subtitle = heroDiv.getAttribute("data-subtitle") || "";
 
     const heroHTML = `
+      <section class="hero" style="background-image: url('${heroImage}')">
+        <div class="hero-content">
+          <h1>${title}</h1>
+          <p>${subtitle}</p>
+        </div>
+      </section>
+    `;
+
+    heroDiv.insertAdjacentHTML("afterend", heroHTML);
+    heroDiv.remove();
+  }
+
+
+  /* ------------------------------------
+     4. Make YouTube responsive
+  ------------------------------------ */
+  const iframes = document.querySelectorAll("iframe");
+  iframes.forEach(iframe => {
+    const src = iframe.getAttribute("src");
+    if (src && src.includes("youtube.com")) {
+      const wrapper = document.createElement("div");
+      wrapper.className = "video-container";
+      iframe.parentNode.insertBefore(wrapper, iframe);
+      wrapper.appendChild(iframe);
+    }
+  });
+
+
+  /* ------------------------------------
+     5. Insert Footer
+  ------------------------------------ */
+  document.body.insertAdjacentHTML("beforeend", `
+    <footer>
+      © ${new Date().getFullYear()} 我的人生旅程 · 记录、思考、热爱
+    </footer>
+  `);
+
+});

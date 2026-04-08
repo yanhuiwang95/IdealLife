@@ -8,97 +8,91 @@
 
 <body>
 
-<!-- Hero -->
-<div 
-  data-hero="images/should-hero.jpg"
-  data-title="应该做的事"
-  data-subtitle="让生活更稳、更健康、更有方向的基础习惯"
-></div>
+<!-- 顶部重点区块（无 Hero 图） -->
+<div class="top-feature-box" 
+     style="
+       max-width: 880px;
+       margin: 40px auto 20px;
+       padding: 32px 28px;
+       background: #f7f3ec;
+       border-radius: 10px;
+       box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+     ">
+  <h2 style="
+        font-family: 'Caveat', cursive;
+        font-size: 40px;
+        margin-bottom: 20px;
+        color: #1f4f7f;
+        text-align: center;
+      ">
+    重点推荐
+  </h2>
+
+  <ul style="
+        list-style: none;
+        padding-left: 0;
+        text-align: center;
+        font-family: 'Caveat', cursive;
+        font-size: 28px;
+        line-height: 1.8;
+      ">
+    <li><a href="article-1.html">如何建立可持续的健康系统</a></li>
+    <li><a href="article-2.html">每天 1% 的进步：微习惯的力量</a></li>
+    <li><a href="article-3.html">减少生活中的决策疲劳</a></li>
+  </ul>
+</div>
 
 <main>
 
-  <!-- 置顶三篇文章 -->
-  <section class="featured">
-    <h2>重点推荐</h2>
+  <!-- 四列分类 -->
+  <section class="category-grid" 
+           style="
+             max-width: 1200px;
+             margin: 40px auto;
+             padding: 0 20px;
+             display: grid;
+             grid-template-columns: repeat(4, 1fr);
+             gap: 40px;
+           ">
 
-    <div class="featured-list">
-
-      <a href="article-1.html" class="featured-card">
-        <img src="images/featured1.jpg" alt="">
-        <div class="featured-text">
-          <h3>如何建立可持续的健康系统</h3>
-          <p>不是靠意志力，而是靠系统让健康变得轻松。</p>
-        </div>
-      </a>
-
-      <a href="article-2.html" class="featured-card">
-        <img src="images/featured2.jpg" alt="">
-        <div class="featured-text">
-          <h3>每天 1% 的进步：微习惯的力量</h3>
-          <p>小到不可能失败的习惯，才是长期改变的关键。</p>
-        </div>
-      </a>
-
-      <a href="article-3.html" class="featured-card">
-        <img src="images/featured3.jpg" alt="">
-        <div class="featured-text">
-          <h3>如何减少生活中的决策疲劳</h3>
-          <p>让生活更轻盈的第一步，是减少不必要的选择。</p>
-        </div>
-      </a>
-
-    </div>
-  </section>
-
-  <!-- 分类区块（两列布局） -->
-  <section class="categories">
-
-    <div class="category-column">
-
-      <!-- 饮食 -->
-      <div class="category">
-        <h2>🥗 饮食</h2>
-        <ul>
-          <li><a href="food-1.html">如何建立长期可持续的饮食系统</a></li>
-          <li><a href="food-2.html">80% 饱原则：轻盈饮食的基础</a></li>
-          <li><a href="food-3.html">如何减少情绪化饮食</a></li>
-        </ul>
-      </div>
-
-      <!-- 运动 -->
-      <div class="category">
-        <h2>🏃‍♂️ 运动</h2>
-        <ul>
-          <li><a href="sport-1.html">每天 30 分钟散步的力量</a></li>
-          <li><a href="sport-2.html">如何建立不依赖动力的运动系统</a></li>
-          <li><a href="sport-3.html">为什么轻松跑比高强度更可持续</a></li>
-        </ul>
-      </div>
-
+    <!-- 饮食 -->
+    <div class="category">
+      <h3 style="font-size: 26px; margin-bottom: 16px;">🥗 饮食</h3>
+      <ul>
+        <li><a href="food-1.html">如何建立长期可持续的饮食系统</a></li>
+        <li><a href="food-2.html">80% 饱原则：轻盈饮食的基础</a></li>
+        <li><a href="food-3.html">如何减少情绪化饮食</a></li>
+      </ul>
     </div>
 
-    <div class="category-column">
+    <!-- 运动 -->
+    <div class="category">
+      <h3 style="font-size: 26px; margin-bottom: 16px;">🏃‍♂️ 运动</h3>
+      <ul>
+        <li><a href="sport-1.html">每天 30 分钟散步的力量</a></li>
+        <li><a href="sport-2.html">如何建立不依赖动力的运动系统</a></li>
+        <li><a href="sport-3.html">为什么轻松跑比高强度更可持续</a></li>
+      </ul>
+    </div>
 
-      <!-- 睡眠 -->
-      <div class="category">
-        <h2>😴 睡眠</h2>
-        <ul>
-          <li><a href="sleep-1.html">睡眠系统：固定时间比睡眠时长更重要</a></li>
-          <li><a href="sleep-2.html">如何减少睡前焦虑</a></li>
-          <li><a href="sleep-3.html">打造你的睡眠仪式感</a></li>
-        </ul>
-      </div>
+    <!-- 睡眠 -->
+    <div class="category">
+      <h3 style="font-size: 26px; margin-bottom: 16px;">😴 睡眠</h3>
+      <ul>
+        <li><a href="sleep-1.html">睡眠系统：固定时间比睡眠时长更重要</a></li>
+        <li><a href="sleep-2.html">如何减少睡前焦虑</a></li>
+        <li><a href="sleep-3.html">打造你的睡眠仪式感</a></li>
+      </ul>
+    </div>
 
-      <!-- 心理 -->
-      <div class="category">
-        <h2>🧠 心理</h2>
-        <ul>
-          <li><a href="mind-1.html">如何建立情绪复原系统</a></li>
-          <li><a href="mind-2.html">减少内耗的三个关键习惯</a></li>
-          <li><a href="mind-3.html">如何让生活更有掌控感。</a></li>
-        </ul>
-      </div>
-
+    <!-- 心理 -->
+    <div class="category">
+      <h3 style="font-size: 26px; margin-bottom: 16px;">🧠 心理</h3>
+      <ul>
+        <li><a href="mind-1.html">如何建立情绪复原系统</a></li>
+        <li><a href="mind-2.html">减少内耗的三个关键习惯</a></li>
+        <li><a href="mind-3.html">如何让生活更有掌控感</a></li>
+      </ul>
     </div>
 
   </section>

@@ -134,29 +134,38 @@ document.addEventListener("DOMContentLoaded", function () {
     .hero p { font-size: 22px; margin-bottom: 24px; }
 
     /* ------------------------------------
-       INDEX 页面（响应式三列）
+       INDEX 页面（内容宽度修复 + 响应式）
     ------------------------------------ */
-    body.index main {
+
+    /* 包裹所有 index 内容，避免全屏 */
+    body.index .content-wrapper {
       max-width: 1200px;
-      margin: 40px auto;
-      padding: 0 20px 60px;
+      margin: 0 auto;
+      padding: 0 20px;
     }
 
+    /* 三列卡片 */
     body.index .trip-grid {
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 0 20px;
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 25px;
     }
 
+    /* 平板：2 列 */
     @media (max-width: 900px) {
       body.index .trip-grid {
         grid-template-columns: repeat(2, 1fr);
       }
     }
 
+    /* 手机：1 列 + 左右留白 */
     @media (max-width: 600px) {
       body.index .trip-grid {
         grid-template-columns: 1fr;
+        padding: 0 16px;
       }
     }
 
@@ -370,7 +379,7 @@ document.addEventListener("DOMContentLoaded", function () {
       <div class="nav-container">
 
         <a href="index.html" class="logo-link">
-          <img src="https://raw.githubusercontent.com/yanhuiwang95/images-repo/main/logo.jpg" class="site-logo" alt="logo">
+          <img src="images/logo.png" class="site-logo" alt="logo">
         </a>
 
         <div class="menu-toggle">☰</div>

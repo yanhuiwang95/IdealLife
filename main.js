@@ -24,10 +24,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
     a { text-decoration: none; color: inherit; }
 
-    /* Header */
+    /* ------------------------------------
+       HEADER（黑色背景 + 白色菜单）
+    ------------------------------------ */
     header {
-      background: #ffffff;
-      border-bottom: 1px solid #e5e5e5;
+      background: #000;
+      border-bottom: 1px solid #222;
       position: sticky;
       top: 0;
       z-index: 1000;
@@ -64,22 +66,25 @@ document.addEventListener("DOMContentLoaded", function () {
 
     nav li a {
       font-size: 16px;
-      color: #555;
+      color: #fff;
       padding-bottom: 4px;
       border-bottom: 2px solid transparent;
     }
 
     nav li a:hover {
-      color: #1f4f7f;
-      border-bottom-color: #1f4f7f;
+      color: #ddd;
+      border-bottom-color: #ddd;
     }
 
-    /* Mobile hamburger */
+    /* ------------------------------------
+       MOBILE MENU（右对齐）
+    ------------------------------------ */
     .menu-toggle {
       display: none;
       font-size: 30px;
       cursor: pointer;
       user-select: none;
+      color: #fff;
     }
 
     @media (max-width: 750px) {
@@ -90,22 +95,28 @@ document.addEventListener("DOMContentLoaded", function () {
       nav ul {
         display: none;
         flex-direction: column;
-        background: white;
+        background: #000;
         padding: 20px;
         border-radius: 8px;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         position: absolute;
         right: 20px;
         top: 60px;
         width: 180px;
+        box-shadow: 0 4px 12px rgba(255,255,255,0.15);
       }
 
       nav ul.open {
         display: flex;
       }
+
+      nav li a {
+        color: #fff;
+      }
     }
 
-    /* Hero */
+    /* ------------------------------------
+       HERO
+    ------------------------------------ */
     .hero {
       color: #fff;
       text-align: center;
@@ -134,17 +145,14 @@ document.addEventListener("DOMContentLoaded", function () {
     .hero p { font-size: 22px; margin-bottom: 24px; }
 
     /* ------------------------------------
-       INDEX 页面（内容居中 + 响应式）
+       INDEX 内容居中 + 响应式
     ------------------------------------ */
-
-    /* 包裹所有 index 内容，避免贴边 */
     body.index .content-wrapper {
       max-width: 1200px;
       margin: 0 auto;
       padding: 0 20px;
     }
 
-    /* 三列卡片 */
     body.index .trip-grid {
       max-width: 1200px;
       margin: 40px auto;
@@ -154,14 +162,12 @@ document.addEventListener("DOMContentLoaded", function () {
       gap: 25px;
     }
 
-    /* 平板：2 列 */
     @media (max-width: 900px) {
       body.index .trip-grid {
         grid-template-columns: repeat(2, 1fr);
       }
     }
 
-    /* 手机：1 列 + 左右留白 */
     @media (max-width: 600px) {
       body.index .trip-grid {
         grid-template-columns: 1fr;
@@ -229,7 +235,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     /* ------------------------------------
-       文章页面（黄金阅读宽度）
+       文章页（黄金阅读宽度）
     ------------------------------------ */
     body.article main {
       max-width: 880px;
@@ -296,7 +302,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     /* ------------------------------------
-       列表优化（Notion 风格 + 手写数字）
+       列表优化（Notion 风格）
     ------------------------------------ */
     body.article ol,
     body.article ul {
@@ -331,12 +337,6 @@ document.addEventListener("DOMContentLoaded", function () {
       font-family: "Caveat", cursive;
       font-size: 1.2em;
       color: #1f4f7f;
-    }
-
-    /* details 内部列表 */
-    details ol,
-    details ul {
-      padding-left: 32px !important;
     }
 
     /* ------------------------------------
@@ -425,7 +425,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
   /* ------------------------------------
-     4. Insert Hero（支持 data-title / data-subtitle）
+     4. Insert Hero
   ------------------------------------ */
   const heroDiv = document.querySelector("[data-hero]");
   if (heroDiv) {
@@ -448,7 +448,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
   /* ------------------------------------
-     5. Make YouTube responsive
+     5. YouTube Responsive
   ------------------------------------ */
   const iframes = document.querySelectorAll("iframe");
   iframes.forEach(iframe => {
@@ -463,7 +463,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
   /* ------------------------------------
-     6. details smooth animation JS
+     6. details smooth animation
   ------------------------------------ */
   document.querySelectorAll("details").forEach(d => {
     d.addEventListener("toggle", () => {
@@ -490,7 +490,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
   /* ------------------------------------
-     8. Insert Footer
+     8. Footer
   ------------------------------------ */
   document.body.insertAdjacentHTML("beforeend", `
     <footer>

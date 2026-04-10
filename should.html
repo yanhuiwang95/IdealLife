@@ -6,15 +6,14 @@
   <title>应该做的事</title>
 
   <style>
-    /* 顶部三条重点文章（紧凑版） */
+    /* 顶部三条重点文章（紧凑左对齐版） */
     .top-feature-box {
       max-width: 880px;
-      margin: 30px auto 10px;
-      padding: 20px 24px;
+      margin: 20px auto 10px;
+      padding: 16px 20px;
       background: #f7f3ec;
       border-radius: 10px;
       box-shadow: 0 2px 6px rgba(0,0,0,0.06);
-      text-align: center;
     }
 
     .top-feature-box ul {
@@ -22,8 +21,9 @@
       padding-left: 0;
       margin: 0;
       font-family: "Caveat", cursive;
-      font-size: 28px;
-      line-height: 1.6;
+      font-size: 22px;
+      line-height: 1.4;
+      text-align: left;
     }
 
     .top-feature-box li {
@@ -40,14 +40,12 @@
       gap: 40px;
     }
 
-    /* 平板：变成 2 列 */
     @media (max-width: 1100px) {
       .category-grid {
         grid-template-columns: repeat(2, 1fr);
       }
     }
 
-    /* 手机：变成 1 列 */
     @media (max-width: 650px) {
       .category-grid {
         grid-template-columns: 1fr;
@@ -67,12 +65,12 @@
 
 <body>
 
-<!-- 顶部重点区块（无 Hero 图） -->
+<!-- 顶部重点区块（紧凑左对齐） -->
 <div class="top-feature-box">
   <ul>
-    <li><a href="article-1.html">如何建立可持续的健康系统</a></li>
-    <li><a href="article-2.html">每天 1% 的进步：微习惯的力量</a></li>
-    <li><a href="article-3.html">减少生活中的决策疲劳</a></li>
+    <li>置顶 1：<a href="article-1.html">文章 1</a></li>
+    <li>置顶 2：<a href="article-2.html">文章 2</a></li>
+    <li>置顶 3：<a href="article-3.html">文章 3</a></li>
   </ul>
 </div>
 

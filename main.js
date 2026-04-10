@@ -9,12 +9,22 @@ document.addEventListener("DOMContentLoaded", function () {
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
+    /* 全局去掉所有链接下划线 */
+    a, a:visited, a:hover, a:active {
+      text-decoration: none !important;
+    }
+
     body {
       font-family: "Noto Serif", serif;
       font-size: 18px;
       line-height: 1.85;
       color: #333;
       background-color: #f5f5f5;
+    }
+
+    h1, h2, h3 {
+      font-family: "Caveat", cursive;
+      letter-spacing: 0.5px;
     }
 
     /* ------------------------------------
@@ -26,7 +36,7 @@ document.addEventListener("DOMContentLoaded", function () {
       position: sticky;
       top: 0;
       z-index: 1000;
-      padding: 0; /* 让 header 高度由 logo 决定 */
+      padding: 0;
     }
 
     .nav-container {
@@ -35,14 +45,14 @@ document.addEventListener("DOMContentLoaded", function () {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0 20px; /* 左右留白 */
-      height: 60px; /* header 高度 = logo 高度 */
+      padding: 0 20px;
+      height: 70px; /* header 高度 */
     }
 
     /* LOGO（保持原始比例 + 填满 header 高度） */
     .site-logo {
-      height: 60px;   /* 你可以改成 70px、80px */
-      width: auto;    /* 自动宽度，保持比例 */
+      height: 70px;   /* 你可以改成 80px、90px */
+      width: auto;
       display: block;
     }
 
@@ -77,7 +87,7 @@ document.addEventListener("DOMContentLoaded", function () {
     ------------------------------------ */
     .menu-toggle {
       display: none;
-      font-size: 30px;
+      font-size: 32px;
       cursor: pointer;
       user-select: none;
       color: #fff;
@@ -97,7 +107,7 @@ document.addEventListener("DOMContentLoaded", function () {
         padding: 20px;
         border-radius: 8px;
         position: absolute;
-        top: 60px;
+        top: 70px;
         right: 20px;
 
         /* 关键：强制右对齐 */

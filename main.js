@@ -134,10 +134,10 @@ document.addEventListener("DOMContentLoaded", function () {
     .hero p { font-size: 22px; margin-bottom: 24px; }
 
     /* ------------------------------------
-       INDEX 页面（内容宽度修复 + 响应式）
+       INDEX 页面（内容居中 + 响应式）
     ------------------------------------ */
 
-    /* 包裹所有 index 内容，避免全屏 */
+    /* 包裹所有 index 内容，避免贴边 */
     body.index .content-wrapper {
       max-width: 1200px;
       margin: 0 auto;
@@ -201,6 +201,31 @@ document.addEventListener("DOMContentLoaded", function () {
       font-size: 15px;
       color: #555;
       padding: 0 16px 20px;
+    }
+
+    /* ------------------------------------
+       主内容 + sidebar 居中
+    ------------------------------------ */
+    body.index main {
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 0 20px;
+      display: grid;
+      grid-template-columns: 3fr 1fr;
+      gap: 40px;
+    }
+
+    @media (max-width: 900px) {
+      body.index main {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .sidebar-box {
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
     }
 
     /* ------------------------------------
@@ -379,7 +404,7 @@ document.addEventListener("DOMContentLoaded", function () {
       <div class="nav-container">
 
         <a href="index.html" class="logo-link">
-          <img src="images/logo.png" class="site-logo" alt="logo">
+          <img src="https://raw.githubusercontent.com/yanhuiwang95/images-repo/main/logo.jpg" class="site-logo" alt="logo">
         </a>
 
         <div class="menu-toggle">☰</div>

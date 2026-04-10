@@ -408,7 +408,7 @@ document.addEventListener("DOMContentLoaded", function () {
       <div class="nav-container">
 
         <a href="index.html" class="logo-link">
-          <img src="https://raw.githubusercontent.com/yanhuiwang95/images-repo/main/logo.jpg" class="site-logo" alt="logo">
+          <img src="https://raw.githubusercontent.com/yanhuiwang95/images-repo/main/logo.png" class="site-logo" alt="logo">
         </a>
 
         <div class="menu-toggle">☰</div>

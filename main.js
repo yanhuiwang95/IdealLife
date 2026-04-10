@@ -40,6 +40,7 @@ document.addEventListener("DOMContentLoaded", function () {
       align-items: center;
       justify-content: space-between;
       padding: 12px 20px;
+      position: relative;
     }
 
     .logo {
@@ -49,6 +50,7 @@ document.addEventListener("DOMContentLoaded", function () {
       color: #1f4f7f;
     }
 
+    /* Desktop menu */
     nav ul {
       list-style: none;
       display: flex;
@@ -65,6 +67,37 @@ document.addEventListener("DOMContentLoaded", function () {
     nav li a:hover {
       color: #1f4f7f;
       border-bottom-color: #1f4f7f;
+    }
+
+    /* Mobile hamburger */
+    .menu-toggle {
+      display: none;
+      font-size: 30px;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    @media (max-width: 750px) {
+      .menu-toggle {
+        display: block;
+      }
+
+      nav ul {
+        display: none;
+        flex-direction: column;
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        position: absolute;
+        right: 20px;
+        top: 60px;
+        width: 180px;
+      }
+
+      nav ul.open {
+        display: flex;
+      }
     }
 
     /* Hero */
@@ -96,41 +129,32 @@ document.addEventListener("DOMContentLoaded", function () {
     .hero p { font-size: 22px; margin-bottom: 24px; }
 
     /* ------------------------------------
-       INDEX 页面（全宽布局）
+       INDEX 页面（响应式三列）
     ------------------------------------ */
     body.index main {
       max-width: 1200px;
       margin: 40px auto;
       padding: 0 20px 60px;
-      display: grid;
-      grid-template-columns: 3fr 1fr;
-      gap: 40px;
     }
 
-    /* 三列区块 */
-    .trip-planning {
-      max-width: 1200px;
-      margin: 60px auto;
-      padding: 0 20px;
-      text-align: center;
-    }
-
-    .section-title {
-      font-size: 36px;
-      color: #1f4f7f;
-      margin-bottom: 10px;
-    }
-
-    .section-subtitle {
-      font-size: 18px;
-      color: #555;
-      margin-bottom: 30px;
-    }
-
-    .trip-grid {
+    body.index .trip-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 25px;
+    }
+
+    /* 平板：2 列 */
+    @media (max-width: 900px) {
+      body.index .trip-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    /* 手机：1 列 */
+    @media (max-width: 600px) {
+      body.index .trip-grid {
+        grid-template-columns: 1fr;
+      }
     }
 
     .trip-card {
@@ -235,10 +259,8 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     /* ------------------------------------
-       列表优化（你要求的全部增强）
+       列表优化（Notion 风格 + 手写数字）
     ------------------------------------ */
-
-    /* 整体缩进 + 行距 */
     body.article ol,
     body.article ul {
       padding-left: 32px;
@@ -252,7 +274,6 @@ document.addEventListener("DOMContentLoaded", function () {
       padding-left: 14px;
     }
 
-    /* Notion 风格左侧竖线 */
     body.article li::before {
       content: "";
       position: absolute;
@@ -264,28 +285,21 @@ document.addEventListener("DOMContentLoaded", function () {
       border-radius: 2px;
     }
 
-    /* 柔和圆点 */
     body.article ul li::marker {
       color: #888;
       font-size: 0.9em;
     }
 
-    /* 数字列表使用 Caveat 手写体 */
     body.article ol li::marker {
       font-family: "Caveat", cursive;
       font-size: 1.2em;
       color: #1f4f7f;
     }
 
-    /* details 内部列表也缩进 */
+    /* details 内部列表 */
     details ol,
     details ul {
       padding-left: 32px !important;
-    }
-
-    details li {
-      margin-bottom: 10px !important;
-      line-height: 1.75 !important;
     }
 
     /* ------------------------------------
@@ -317,12 +331,6 @@ document.addEventListener("DOMContentLoaded", function () {
       font-weight: 700 !important;
       font-size: 18px !important;
       color: #fff !important;
-    }
-
-    details p {
-      margin-top: 12px !important;
-      font-size: 16px !important;
-      line-height: 1.8 !important;
     }
 
     /* Footer */
@@ -358,6 +366,9 @@ document.addEventListener("DOMContentLoaded", function () {
     <header>
       <div class="nav-container">
         <div class="logo">我的人生旅程</div>
+
+        <div class="menu-toggle">☰</div>
+
         <nav>
           <ul>
             <li><a href="index.html">关于</a></li>
@@ -425,7 +436,20 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
   /* ------------------------------------
-     7. Insert Footer
+     7. Mobile menu toggle
+  ------------------------------------ */
+  const toggle = document.querySelector(".menu-toggle");
+  const menu = document.querySelector("nav ul");
+
+  if (toggle && menu) {
+    toggle.addEventListener("click", () => {
+      menu.classList.toggle("open");
+    });
+  }
+
+
+  /* ------------------------------------
+     8. Insert Footer
   ------------------------------------ */
   document.body.insertAdjacentHTML("beforeend", `
     <footer>

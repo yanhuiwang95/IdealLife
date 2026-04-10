@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
 
   /* ------------------------------------
-     1. Inject Global CSS
+     Inject Global CSS
   ------------------------------------ */
   const style = document.createElement("style");
   style.innerHTML = `
@@ -17,13 +17,6 @@ document.addEventListener("DOMContentLoaded", function () {
       background-color: #f5f5f5;
     }
 
-    h1, h2, h3 {
-      font-family: "Caveat", cursive;
-      letter-spacing: 0.5px;
-    }
-
-    a { text-decoration: none; color: inherit; }
-
     /* ------------------------------------
        HEADER（黑色背景 + 白色菜单）
     ------------------------------------ */
@@ -33,6 +26,7 @@ document.addEventListener("DOMContentLoaded", function () {
       position: sticky;
       top: 0;
       z-index: 1000;
+      padding: 0; /* 让 header 高度由 logo 决定 */
     }
 
     .nav-container {
@@ -41,15 +35,14 @@ document.addEventListener("DOMContentLoaded", function () {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 12px 20px;
-      position: relative;
+      padding: 0 20px; /* 左右留白 */
+      height: 60px; /* header 高度 = logo 高度 */
     }
 
-    /* LOGO（保持原始比例） */
+    /* LOGO（保持原始比例 + 填满 header 高度） */
     .site-logo {
-      max-height: 46px;
-      width: auto;
-      height: auto;
+      height: 60px;   /* 你可以改成 70px、80px */
+      width: auto;    /* 自动宽度，保持比例 */
       display: block;
     }
 
@@ -396,7 +389,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
   /* ------------------------------------
-     2. Detect Page Type
+     Detect Page Type
   ------------------------------------ */
   const path = window.location.pathname;
 
@@ -408,14 +401,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
   /* ------------------------------------
-     3. Insert Header
+     Insert Header
   ------------------------------------ */
   document.body.insertAdjacentHTML("afterbegin", `
     <header>
       <div class="nav-container">
 
         <a href="index.html" class="logo-link">
-          <img src="https://raw.githubusercontent.com/yanhuiwang95/images-repo/main/logo.png" class="site-logo" alt="logo">
+          <img src="images/logo.png" class="site-logo" alt="logo">
         </a>
 
         <div class="menu-toggle">☰</div>
@@ -436,7 +429,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
   /* ------------------------------------
-     4. Insert Hero
+     Insert Hero
   ------------------------------------ */
   const heroDiv = document.querySelector("[data-hero]");
   if (heroDiv) {
@@ -459,7 +452,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
   /* ------------------------------------
-     5. YouTube Responsive
+     YouTube Responsive
   ------------------------------------ */
   const iframes = document.querySelectorAll("iframe");
   iframes.forEach(iframe => {
@@ -474,7 +467,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
   /* ------------------------------------
-     6. details smooth animation
+     details smooth animation
   ------------------------------------ */
   document.querySelectorAll("details").forEach(d => {
     d.addEventListener("toggle", () => {
@@ -488,7 +481,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
   /* ------------------------------------
-     7. Mobile menu toggle
+     Mobile menu toggle
   ------------------------------------ */
   const toggle = document.querySelector(".menu-toggle");
   const menu = document.querySelector("nav ul");
@@ -501,7 +494,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
   /* ------------------------------------
-     8. Footer
+     Footer
   ------------------------------------ */
   document.body.insertAdjacentHTML("beforeend", `
     <footer>

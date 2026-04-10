@@ -43,11 +43,16 @@ document.addEventListener("DOMContentLoaded", function () {
       position: relative;
     }
 
-    .logo {
-      font-size: 26px;
-      font-family: "Caveat", cursive;
-      font-weight: 600;
-      color: #1f4f7f;
+    /* LOGO */
+    .site-logo {
+      height: 42px;
+      width: auto;
+      display: block;
+    }
+
+    .logo-link {
+      display: flex;
+      align-items: center;
     }
 
     /* Desktop menu */
@@ -143,14 +148,12 @@ document.addEventListener("DOMContentLoaded", function () {
       gap: 25px;
     }
 
-    /* 平板：2 列 */
     @media (max-width: 900px) {
       body.index .trip-grid {
         grid-template-columns: repeat(2, 1fr);
       }
     }
 
-    /* 手机：1 列 */
     @media (max-width: 600px) {
       body.index .trip-grid {
         grid-template-columns: 1fr;
@@ -365,7 +368,10 @@ document.addEventListener("DOMContentLoaded", function () {
   document.body.insertAdjacentHTML("afterbegin", `
     <header>
       <div class="nav-container">
-        <div class="logo">我的人生旅程</div>
+
+        <a href="index.html" class="logo-link">
+          <img src="images/logo.png" class="site-logo" alt="logo">
+        </a>
 
         <div class="menu-toggle">☰</div>
 
@@ -378,6 +384,7 @@ document.addEventListener("DOMContentLoaded", function () {
             <li><a href="memories.html">时光留影</a></li>
           </ul>
         </nav>
+
       </div>
     </header>
   `);

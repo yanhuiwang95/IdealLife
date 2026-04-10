@@ -62,6 +62,8 @@ document.addEventListener("DOMContentLoaded", function () {
       list-style: none;
       display: flex;
       gap: 20px;
+      justify-content: flex-end;
+      align-items: center;
     }
 
     nav li a {
@@ -102,6 +104,8 @@ document.addEventListener("DOMContentLoaded", function () {
         right: 20px;
         top: 60px;
         width: 180px;
+        text-align: right;
+        align-items: flex-end;
         box-shadow: 0 4px 12px rgba(255,255,255,0.15);
       }
 

@@ -45,10 +45,11 @@ document.addEventListener("DOMContentLoaded", function () {
       position: relative;
     }
 
-    /* LOGO */
+    /* LOGO（保持原始比例） */
     .site-logo {
-      height: 42px;
+      max-height: 46px;
       width: auto;
+      height: auto;
       display: block;
     }
 
@@ -79,7 +80,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     /* ------------------------------------
-       MOBILE MENU（右对齐）
+       MOBILE MENU（强制右对齐）
     ------------------------------------ */
     .menu-toggle {
       display: none;
@@ -87,9 +88,11 @@ document.addEventListener("DOMContentLoaded", function () {
       cursor: pointer;
       user-select: none;
       color: #fff;
+      margin-left: auto;
     }
 
     @media (max-width: 750px) {
+
       .menu-toggle {
         display: block;
       }
@@ -101,11 +104,15 @@ document.addEventListener("DOMContentLoaded", function () {
         padding: 20px;
         border-radius: 8px;
         position: absolute;
-        right: 20px;
         top: 60px;
-        width: 180px;
-        text-align: right;
-        align-items: flex-end;
+        right: 20px;
+
+        /* 关键：强制右对齐 */
+        align-items: flex-end !important;
+        text-align: right !important;
+        justify-content: flex-start !important;
+
+        width: 200px;
         box-shadow: 0 4px 12px rgba(255,255,255,0.15);
       }
 
@@ -408,7 +415,7 @@ document.addEventListener("DOMContentLoaded", function () {
       <div class="nav-container">
 
         <a href="index.html" class="logo-link">
-          <img src="https://raw.githubusercontent.com/yanhuiwang95/images-repo/main/logo.png" class="site-logo" alt="logo">
+          <img src="images/logo.png" class="site-logo" alt="logo">
         </a>
 
         <div class="menu-toggle">☰</div>

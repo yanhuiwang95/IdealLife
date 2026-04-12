@@ -76,50 +76,157 @@
 
 <main>
 
-  <!-- 四列分类（自动响应式） -->
+  <!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>应该做的事</title>
+
+  <style>
+    /* 顶部三条重点文章（紧凑左对齐版） */
+    .top-feature-box {
+      max-width: 880px;
+      margin: 20px auto 10px;
+      padding: 16px 20px;
+      background: #f7f3ec;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+    }
+
+    .top-feature-box ul {
+      list-style: none;
+      padding-left: 0;
+      margin: 0;
+      font-family: "Caveat", cursive;
+      font-size: 22px;
+      line-height: 1.4;
+      text-align: left;
+    }
+
+    .top-feature-box li {
+      margin: 6px 0;
+    }
+
+    /* 四列分类（响应式） */
+    .category-grid {
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 0 20px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 40px;
+    }
+
+    @media (max-width: 1100px) {
+      .category-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 650px) {
+      .category-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .category h3 {
+      font-size: 26px;
+      margin-bottom: 16px;
+    }
+
+    .category ul {
+      padding-left: 20px;
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- 顶部重点区块（紧凑左对齐） -->
+<div class="top-feature-box">
+  <ul>
+    <li>置顶 1：<a href="#">文章 1</a></li>
+    <li>置顶 2：<a href="#">文章 2</a></li>
+    <li>置顶 3：<a href="#">文章 3</a></li>
+  </ul>
+</div>
+
+<main>
+
+  <!-- 四列分类（自动加载文章） -->
   <section class="category-grid">
 
     <!-- 饮食 -->
     <div class="category">
       <h3>🥗 饮食</h3>
-      <ul>
-        <li><a href="food-1.html">如何建立长期可持续的饮食系统</a></li>
-        <li><a href="food-2.html">80% 饱原则：轻盈饮食的基础</a></li>
-        <li><a href="food/dietary-puzzle.html">饮食完整拼图</a></li>
+      <ul id="diet-list">
+        <li>加载中...</li>
       </ul>
     </div>
 
     <!-- 运动 -->
     <div class="category">
       <h3>🏃‍♂️ 运动</h3>
-      <ul>
-        <li><a href="sport-1.html">每天 30 分钟散步的力量</a></li>
-        <li><a href="sport-2.html">如何建立不依赖动力的运动系统</a></li>
-        <li><a href="sport-3.html">为什么轻松跑比高强度更可持续</a></li>
+      <ul id="exercise-list">
+        <li>加载中...</li>
       </ul>
     </div>
 
     <!-- 睡眠 -->
     <div class="category">
       <h3>😴 睡眠</h3>
-      <ul>
-        <li><a href="sleep-1.html">睡眠系统：固定时间比睡眠时长更重要</a></li>
-        <li><a href="sleep-2.html">如何减少睡前焦虑</a></li>
-        <li><a href="sleep-3.html">打造你的睡眠仪式感</a></li>
+      <ul id="sleep-list">
+        <li>加载中...</li>
       </ul>
     </div>
 
     <!-- 心理 -->
     <div class="category">
       <h3>🧠 心理</h3>
-      <ul>
-        <li><a href="mind-1.html">如何建立情绪复原系统</a></li>
-        <li><a href="mind-2.html">减少内耗的三个关键习惯</a></li>
-        <li><a href="mind-3.html">如何让生活更有掌控感</a></li>
+      <ul id="mind-list">
+        <li>加载中...</li>
       </ul>
     </div>
 
   </section>
+
+</main>
+
+<script src="main.js"></script>
+
+<script>
+/* 自动加载四个分类的文章列表 */
+async function loadCategory(folder, elementId) {
+  try {
+    const res = await fetch(`${folder}/index.json`);
+    const articles = await res.json();
+
+    const ul = document.getElementById(elementId);
+    ul.innerHTML = "";
+
+    articles.forEach(a => {
+      const li = document.createElement("li");
+      li.innerHTML = `<a href="${folder}/${a.file}">${a.title}</a>`;
+      ul.appendChild(li);
+    });
+
+  } catch (e) {
+    document.getElementById(elementId).innerHTML =
+      "<li>（未找到文章或 index.json）</li>";
+  }
+}
+
+loadCategory("diet", "diet-list");
+loadCategory("exercise", "exercise-list");
+loadCategory("sleep", "sleep-list");
+loadCategory("mind", "mind-list");
+</script>
+
+
+</body>
+</html>
+
 
 </main>
 

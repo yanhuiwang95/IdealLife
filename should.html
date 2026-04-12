@@ -76,84 +76,6 @@
 
 <main>
 
-  <!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>应该做的事</title>
-
-  <style>
-    /* 顶部三条重点文章（紧凑左对齐版） */
-    .top-feature-box {
-      max-width: 880px;
-      margin: 20px auto 10px;
-      padding: 16px 20px;
-      background: #f7f3ec;
-      border-radius: 10px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.06);
-    }
-
-    .top-feature-box ul {
-      list-style: none;
-      padding-left: 0;
-      margin: 0;
-      font-family: "Caveat", cursive;
-      font-size: 22px;
-      line-height: 1.4;
-      text-align: left;
-    }
-
-    .top-feature-box li {
-      margin: 6px 0;
-    }
-
-    /* 四列分类（响应式） */
-    .category-grid {
-      max-width: 1200px;
-      margin: 40px auto;
-      padding: 0 20px;
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 40px;
-    }
-
-    @media (max-width: 1100px) {
-      .category-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-
-    @media (max-width: 650px) {
-      .category-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    .category h3 {
-      font-size: 26px;
-      margin-bottom: 16px;
-    }
-
-    .category ul {
-      padding-left: 20px;
-    }
-  </style>
-</head>
-
-<body>
-
-<!-- 顶部重点区块（紧凑左对齐） -->
-<div class="top-feature-box">
-  <ul>
-    <li>置顶 1：<a href="#">文章 1</a></li>
-    <li>置顶 2：<a href="#">文章 2</a></li>
-    <li>置顶 3：<a href="#">文章 3</a></li>
-  </ul>
-</div>
-
-<main>
-
   <!-- 四列分类（自动加载文章） -->
   <section class="category-grid">
 
@@ -223,13 +145,5 @@ loadCategory("sleep", "sleep-list");
 loadCategory("mind", "mind-list");
 </script>
 
-
-</body>
-</html>
-
-
-</main>
-
-<script src="main.js"></script>
 </body>
 </html>

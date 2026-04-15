@@ -391,7 +391,7 @@ document.addEventListener("DOMContentLoaded", function () {
     <header>
       <div class="nav-container">
 
-        <a href="index.html" class="logo-link">
+        <a href="/index.html" class="logo-link">
           <img src="https://raw.githubusercontent.com/yanhuiwang95/images-repo/main/logo.png" class="site-logo" alt="logo">
         </a>
 
@@ -399,10 +399,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
         <nav>
           <ul>
-            <li><a href="should.html">应该做</a></li>
-            <li><a href="like.html">喜欢做</a></li>
-            <li><a href="meaning.html">人生意义</a></li>
-            <li><a href="memories.html">时光留影</a></li>
+            <li><a href="/should.html">应该做</a></li>
+            <li><a href="/like.html">喜欢做</a></li>
+            <li><a href="/meaning.html">人生意义</a></li>
+            <li><a href="/memories.html">时光留影</a></li>
           </ul>
         </nav>
 

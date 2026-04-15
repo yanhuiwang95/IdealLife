@@ -425,7 +425,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
         <nav>
           <ul>
-            <li><a href="index.html">关于</a></li>
             <li><a href="should.html">应该做</a></li>
             <li><a href="like.html">喜欢做</a></li>
             <li><a href="meaning.html">人生意义</a></li>

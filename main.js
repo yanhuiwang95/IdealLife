@@ -111,8 +111,8 @@ document.addEventListener("DOMContentLoaded", function () {
         right: 20px;
 
         /* 关键：强制右对齐 */
-        align-items: flex-end !important;
-        text-align: right !important;
+        align-items: flex-start !important;
+        text-align: left !important;
         justify-content: flex-start !important;
 
         width: 200px;

@@ -123,6 +123,12 @@ document.addEventListener("DOMContentLoaded", function () {
         display: flex;
       }
 
+      /* 移除手机菜单左侧竖线 */
+      nav ul li::before {
+        content: none !important;
+      }
+
+
       nav li a {
         color: #fff;
       }

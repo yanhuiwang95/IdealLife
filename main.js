@@ -46,12 +46,11 @@ document.addEventListener("DOMContentLoaded", function () {
       align-items: center;
       justify-content: space-between;
       padding: 0 20px;
-      height: 70px; /* header 高度 */
+      height: 70px;
     }
 
-    /* LOGO（保持原始比例 + 填满 header 高度） */
     .site-logo {
-      height: 70px;   /* 你可以改成 80px、90px */
+      height: 70px;
       width: auto;
       display: block;
     }
@@ -82,8 +81,13 @@ document.addEventListener("DOMContentLoaded", function () {
       border-bottom-color: #ddd;
     }
 
+    /* 移除所有页面导航菜单的竖线 */
+    header nav ul li::before {
+      content: none !important;
+    }
+
     /* ------------------------------------
-       MOBILE MENU（强制右对齐）
+       MOBILE MENU
     ------------------------------------ */
     .menu-toggle {
       display: none;
@@ -110,7 +114,7 @@ document.addEventListener("DOMContentLoaded", function () {
         top: 70px;
         right: 20px;
 
-        /* 关键：强制右对齐 */
+        /* 左对齐 */
         align-items: flex-start !important;
         text-align: left !important;
         justify-content: flex-start !important;
@@ -122,12 +126,6 @@ document.addEventListener("DOMContentLoaded", function () {
       nav ul.open {
         display: flex;
       }
-
-      /* 移除手机菜单左侧竖线 */
-      nav ul li::before {
-        content: none !important;
-      }
-
 
       nav li a {
         color: #fff;
@@ -271,7 +269,6 @@ document.addEventListener("DOMContentLoaded", function () {
       margin-bottom: 40px;
     }
 
-    /* 图片自动缩放 */
     img {
       max-width: 100%;
       height: auto;
@@ -280,7 +277,6 @@ document.addEventListener("DOMContentLoaded", function () {
       border-radius: 8px;
     }
 
-    /* 表格优化 */
     table {
       width: 100%;
       border-collapse: collapse;
@@ -302,7 +298,6 @@ document.addEventListener("DOMContentLoaded", function () {
       background: #fafafa;
     }
 
-    /* Responsive YouTube */
     .video-container {
       position: relative;
       width: 100%;
@@ -321,9 +316,7 @@ document.addEventListener("DOMContentLoaded", function () {
       height: 100%;
     }
 
-    /* ------------------------------------
-       列表优化（Notion 风格）
-    ------------------------------------ */
+    /* Notion 风格列表 */
     body.article ol,
     body.article ul {
       padding-left: 32px;
@@ -359,9 +352,7 @@ document.addEventListener("DOMContentLoaded", function () {
       color: #1f4f7f;
     }
 
-    /* ------------------------------------
-       details 黑底白字 + smooth 动画
-    ------------------------------------ */
+    /* details */
     details,
     details * {
       background: #000 !important;
@@ -390,7 +381,6 @@ document.addEventListener("DOMContentLoaded", function () {
       color: #fff !important;
     }
 
-    /* Footer */
     footer {
       text-align: center;
       padding: 20px;
@@ -506,6 +496,20 @@ document.addEventListener("DOMContentLoaded", function () {
       menu.classList.toggle("open");
     });
   }
+
+  /* 自动关闭菜单：滑动页面 */
+  window.addEventListener("scroll", () => {
+    if (menu.classList.contains("open")) {
+      menu.classList.remove("open");
+    }
+  });
+
+  /* 自动关闭菜单：点击其它区域 */
+  document.addEventListener("click", (e) => {
+    if (!menu.contains(e.target) && !toggle.contains(e.target)) {
+      menu.classList.remove("open");
+    }
+  });
 
 
   /* ------------------------------------

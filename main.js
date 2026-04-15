@@ -9,7 +9,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
-    /* 全局去掉所有链接下划线 */
     a, a:visited, a:hover, a:active {
       text-decoration: none !important;
     }
@@ -28,7 +27,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     /* ------------------------------------
-       HEADER（黑色背景 + 白色菜单）
+       HEADER
     ------------------------------------ */
     header {
       background: #000;
@@ -60,7 +59,6 @@ document.addEventListener("DOMContentLoaded", function () {
       align-items: center;
     }
 
-    /* Desktop menu */
     nav ul {
       list-style: none;
       display: flex;
@@ -87,7 +85,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     /* ------------------------------------
-       MOBILE MENU
+       MOBILE MENU + SLIDE ANIMATION
     ------------------------------------ */
     .menu-toggle {
       display: none;
@@ -105,31 +103,38 @@ document.addEventListener("DOMContentLoaded", function () {
       }
 
       nav ul {
-        display: none;
+        display: flex;
         flex-direction: column;
         background: #000;
         padding: 20px;
         border-radius: 8px;
-        position: absolute;
+        position: fixed;
         top: 70px;
-        right: 20px;
+        right: -260px; /* 初始隐藏在右侧 */
+        width: 220px;
+        transition: right 0.35s ease; /* 滑入动画 */
+        box-shadow: 0 4px 12px rgba(255,255,255,0.15);
 
-        /* 左对齐 */
         align-items: flex-start !important;
         text-align: left !important;
         justify-content: flex-start !important;
-
-        width: 200px;
-        box-shadow: 0 4px 12px rgba(255,255,255,0.15);
       }
 
       nav ul.open {
-        display: flex;
+        right: 20px; /* 滑入位置 */
       }
 
       nav li a {
         color: #fff;
       }
+    }
+
+    /* 遮罩层 */
+    .menu-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0);
+      z-index: 900;
     }
 
     /* ------------------------------------
@@ -163,7 +168,7 @@ document.addEventListener("DOMContentLoaded", function () {
     .hero p { font-size: 22px; margin-bottom: 24px; }
 
     /* ------------------------------------
-       INDEX 内容居中 + 响应式
+       INDEX
     ------------------------------------ */
     body.index .content-wrapper {
       max-width: 1200px;
@@ -228,32 +233,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     /* ------------------------------------
-       主内容 + sidebar 居中
-    ------------------------------------ */
-    body.index main {
-      max-width: 1200px;
-      margin: 40px auto;
-      padding: 0 20px;
-      display: grid;
-      grid-template-columns: 3fr 1fr;
-      gap: 40px;
-    }
-
-    @media (max-width: 900px) {
-      body.index main {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    .sidebar-box {
-      background: #fff;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-    }
-
-    /* ------------------------------------
-       文章页（黄金阅读宽度）
+       ARTICLE PAGE
     ------------------------------------ */
     body.article main {
       max-width: 880px;
@@ -316,7 +296,6 @@ document.addEventListener("DOMContentLoaded", function () {
       height: 100%;
     }
 
-    /* Notion 风格列表 */
     body.article ol,
     body.article ul {
       padding-left: 32px;
@@ -352,7 +331,6 @@ document.addEventListener("DOMContentLoaded", function () {
       color: #1f4f7f;
     }
 
-    /* details */
     details,
     details * {
       background: #000 !important;
@@ -486,30 +464,38 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
   /* ------------------------------------
-     Mobile menu toggle
+     Mobile menu toggle + auto close
   ------------------------------------ */
   const toggle = document.querySelector(".menu-toggle");
   const menu = document.querySelector("nav ul");
 
+  function closeMenu() {
+    menu.classList.remove("open");
+    const overlay = document.querySelector(".menu-overlay");
+    if (overlay) overlay.remove();
+  }
+
+  function openMenu() {
+    menu.classList.add("open");
+
+    const overlay = document.createElement("div");
+    overlay.className = "menu-overlay";
+    document.body.appendChild(overlay);
+
+    overlay.addEventListener("click", closeMenu);
+  }
+
   if (toggle && menu) {
     toggle.addEventListener("click", () => {
-      menu.classList.toggle("open");
+      if (menu.classList.contains("open")) {
+        closeMenu();
+      } else {
+        openMenu();
+      }
     });
   }
 
-  /* 自动关闭菜单：滑动页面 */
-  window.addEventListener("scroll", () => {
-    if (menu.classList.contains("open")) {
-      menu.classList.remove("open");
-    }
-  });
-
-  /* 自动关闭菜单：点击其它区域 */
-  document.addEventListener("click", (e) => {
-    if (!menu.contains(e.target) && !toggle.contains(e.target)) {
-      menu.classList.remove("open");
-    }
-  });
+  window.addEventListener("scroll", closeMenu);
 
 
   /* ------------------------------------

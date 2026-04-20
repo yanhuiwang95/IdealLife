@@ -502,7 +502,7 @@ document.addEventListener("DOMContentLoaded", function () {
           <ul>
             <li><a href="/should.html">应该做</a></li>
             <li><a href="/like.html">喜欢做</a></li>
-            <li><a href="/meaning.html">人生意义</a></li>
+            <li><a href="/life-purpose.html">人生意义</a></li>
           </ul>
         </nav>
 

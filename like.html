@@ -1,1 +1,151 @@
-like to do
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>喜欢做的事</title>
+
+  <style>
+    /* 顶部重点文章（紧凑左对齐） */
+    .top-feature-box {
+      max-width: 880px;
+      margin: 20px auto 10px;
+      padding: 16px 20px;
+      background: #f7f3ec;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+    }
+
+    .top-feature-box ul {
+      list-style: none;
+      padding-left: 0;
+      margin: 0;
+      font-family: "Caveat", cursive;
+      font-size: 22px;
+      line-height: 1.4;
+      text-align: left;
+    }
+
+    .top-feature-box li {
+      margin: 6px 0;
+    }
+
+    /* 三列分类（响应式） */
+    .category-grid {
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 0 20px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+    }
+
+    @media (max-width: 900px) {
+      .category-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 650px) {
+      .category-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+    }
+
+    .category h3 {
+      font-size: 26px;
+      margin-bottom: 6px;
+    }
+
+    .category .category-desc {
+      font-size: 14px;
+      color: #888;
+      margin-bottom: 16px;
+      line-height: 1.5;
+    }
+
+    .category ul {
+      padding-left: 20px;
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- 顶部重点区块 -->
+<div class="top-feature-box">
+  <ul>
+    <li>置顶 1：<a href="like-intro.html">为什么"喜欢做的事"也需要规划</a></li>
+    <li>置顶 2：<a href="like-deep.html">深度钻研的乐趣：慢慢来，才是真正的快</a></li>
+    <li>置顶 3：<a href="like-travel.html">旅行的意义：去陌生的地方，遇见另一个自己</a></li>
+  </ul>
+</div>
+
+<main>
+
+  <!-- 三列分类 -->
+  <section class="category-grid">
+
+    <!-- 深度钻研 -->
+    <div class="category">
+      <h3>🔬 深度钻研</h3>
+      <p class="category-desc">需要长期积累，越钻越有味道</p>
+      <ul id="deep-list">
+        <li>加载中...</li>
+      </ul>
+    </div>
+
+    <!-- 随性享受 -->
+    <div class="category">
+      <h3>☕ 随性享受</h3>
+      <p class="category-desc">随时可以做，轻松无负担</p>
+      <ul id="casual-list">
+        <li>加载中...</li>
+      </ul>
+    </div>
+
+    <!-- 探索发现 -->
+    <div class="category">
+      <h3>🌍 探索发现</h3>
+      <p class="category-desc">去外面看看，新鲜体验型</p>
+      <ul id="explore-list">
+        <li>加载中...</li>
+      </ul>
+    </div>
+
+  </section>
+
+</main>
+
+<script src="main.js"></script>
+
+<script>
+/* 自动加载三个分类的文章列表 */
+async function loadCategory(folder, elementId) {
+  try {
+    const res = await fetch(`${folder}/index.json`);
+    const articles = await res.json();
+
+    const ul = document.getElementById(elementId);
+    ul.innerHTML = "";
+
+    articles.forEach(a => {
+      const li = document.createElement("li");
+      li.innerHTML = `<a href="${folder}/${a.file}">${a.title}</a>`;
+      ul.appendChild(li);
+    });
+
+  } catch (e) {
+    document.getElementById(elementId).innerHTML =
+      "<li>（未找到文章或 index.json）</li>";
+  }
+}
+
+loadCategory("like-deep", "deep-list");
+loadCategory("like-casual", "casual-list");
+loadCategory("like-explore", "explore-list");
+</script>
+
+</body>
+</html>

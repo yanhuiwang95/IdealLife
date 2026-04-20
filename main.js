@@ -203,20 +203,38 @@ document.addEventListener("DOMContentLoaded", function () {
       border-radius: 6px;
       overflow: hidden;
       box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      transition: box-shadow 0.2s ease;
       text-align: left;
       display: block;
     }
 
     .trip-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.18);
+    }
+
+    /* 图片容器：用于叠加遮罩 */
+    .trip-card .img-wrap {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .trip-card .img-wrap::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0);
+      transition: background 0.25s ease;
+    }
+
+    .trip-card:hover .img-wrap::after {
+      background: rgba(0, 0, 0, 0.28);
     }
 
     .trip-card img {
       width: 100%;
       height: 180px;
       object-fit: cover;
+      display: block;
     }
 
     .trip-card h3 {
@@ -502,7 +520,8 @@ document.addEventListener("DOMContentLoaded", function () {
           <ul>
             <li><a href="/should.html">应该做</a></li>
             <li><a href="/like.html">喜欢做</a></li>
-            <li><a href="/life-purpose.html">人生意义</a></li>
+            <li><a href="/meaning.html">人生意义</a></li>
+            <li><a href="/memories.html">时光留影</a></li>
           </ul>
         </nav>
 
@@ -532,6 +551,19 @@ document.addEventListener("DOMContentLoaded", function () {
     heroDiv.insertAdjacentHTML("afterend", heroHTML);
     heroDiv.remove();
   }
+
+
+  /* ------------------------------------
+     Trip Card: wrap img in .img-wrap for hover darkening
+  ------------------------------------ */
+  document.querySelectorAll(".trip-card img").forEach(img => {
+    if (!img.parentElement.classList.contains("img-wrap")) {
+      const wrap = document.createElement("div");
+      wrap.className = "img-wrap";
+      img.parentNode.insertBefore(wrap, img);
+      wrap.appendChild(img);
+    }
+  });
 
 
   /* ------------------------------------

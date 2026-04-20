@@ -257,27 +257,119 @@ document.addEventListener("DOMContentLoaded", function () {
       border-radius: 8px;
     }
 
+    /* ------------------------------------
+       TABLE — 桌面版
+    ------------------------------------ */
+    .table-wrapper {
+      width: 100%;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      margin: 24px 0;
+      border-radius: 8px;
+    }
+
     table {
       width: 100%;
       border-collapse: collapse;
-      margin: 24px 0;
       background: #fff;
       border-radius: 8px;
       overflow: hidden;
+      table-layout: auto; /* 按内容自动分配列宽 */
     }
 
-    table td, 
+    table td,
     table th {
       padding: 14px 18px;
       border: 1px solid #ddd;
       font-size: 16px;
       vertical-align: top;
+      word-break: break-word;
     }
 
     table tr:nth-child(even) {
       background: #fafafa;
     }
 
+    /* 第一列（名称/标签列）收窄，不换行 */
+    table td:first-child,
+    table th:first-child {
+      white-space: nowrap;
+      width: 1%;
+    }
+
+    /* ------------------------------------
+       TABLE — 手机卡片式重排
+    ------------------------------------ */
+    @media (max-width: 650px) {
+
+      .table-wrapper {
+        overflow-x: visible;
+        border-radius: 0;
+      }
+
+      table {
+        display: block;
+        border-radius: 8px;
+        overflow: hidden;
+      }
+
+      table thead {
+        display: none; /* 隐藏原始表头，改用 data-label */
+      }
+
+      table tbody {
+        display: block;
+      }
+
+      table tr {
+        display: block;
+        margin-bottom: 14px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        overflow: hidden;
+        background: #fff;
+      }
+
+      table tr:nth-child(even) {
+        background: #fff; /* 手机卡片模式取消斑马纹 */
+      }
+
+      table td {
+        display: flex;
+        gap: 10px;
+        border: none;
+        border-bottom: 1px solid #eee;
+        font-size: 15px;
+        padding: 10px 14px;
+        white-space: normal;
+        width: auto;
+      }
+
+      table td:last-child {
+        border-bottom: none;
+      }
+
+      /* data-label 作为每格的列标题 */
+      table td::before {
+        content: attr(data-label);
+        font-weight: 600;
+        min-width: 72px;
+        flex-shrink: 0;
+        color: #555;
+        font-size: 14px;
+        padding-top: 1px;
+      }
+
+      /* 没有 data-label 的格（如第一行数据本身就是标题）不显示伪元素 */
+      table td[data-label=""]::before {
+        display: none;
+        min-width: 0;
+      }
+    }
+
+    /* ------------------------------------
+       VIDEO
+    ------------------------------------ */
     .video-container {
       position: relative;
       width: 100%;
@@ -296,6 +388,9 @@ document.addEventListener("DOMContentLoaded", function () {
       height: 100%;
     }
 
+    /* ------------------------------------
+       LIST STYLES
+    ------------------------------------ */
     body.article ol,
     body.article ul {
       padding-left: 32px;
@@ -331,6 +426,9 @@ document.addEventListener("DOMContentLoaded", function () {
       color: #1f4f7f;
     }
 
+    /* ------------------------------------
+       DETAILS / ACCORDION
+    ------------------------------------ */
     details,
     details * {
       background: #000 !important;
@@ -359,6 +457,9 @@ document.addEventListener("DOMContentLoaded", function () {
       color: #fff !important;
     }
 
+    /* ------------------------------------
+       FOOTER
+    ------------------------------------ */
     footer {
       text-align: center;
       padding: 20px;
@@ -441,11 +542,57 @@ document.addEventListener("DOMContentLoaded", function () {
   iframes.forEach(iframe => {
     const src = iframe.getAttribute("src");
     if (src && src.includes("youtube.com")) {
-      const wrapper = document.createElement("div");
-      wrapper.className = "video-container";
-      iframe.parentNode.insertBefore(wrapper, iframe);
-      wrapper.appendChild(iframe);
+      if (!iframe.closest(".video-container")) {
+        const wrapper = document.createElement("div");
+        wrapper.className = "video-container";
+        iframe.parentNode.insertBefore(wrapper, iframe);
+        wrapper.appendChild(iframe);
+      }
     }
+  });
+
+
+  /* ------------------------------------
+     Table: 外包 wrapper + 自动打 data-label
+     手机端卡片式重排依赖 data-label 显示列标题
+  ------------------------------------ */
+  document.querySelectorAll("table").forEach(table => {
+
+    // 外包 wrapper（避免重复包裹）
+    if (!table.parentElement.classList.contains("table-wrapper")) {
+      const wrapper = document.createElement("div");
+      wrapper.className = "table-wrapper";
+      table.parentNode.insertBefore(wrapper, table);
+      wrapper.appendChild(table);
+    }
+
+    // 读取表头（支持 <thead><th> 或 tbody 第一行的 <td><strong>）
+    const headers = [];
+    const headerCells = table.querySelectorAll("thead th, thead td");
+
+    if (headerCells.length > 0) {
+      // 标准 thead
+      headerCells.forEach(cell => headers.push(cell.innerText.trim()));
+    } else {
+      // 没有 thead，用 tbody 第一行
+      const firstRow = table.querySelector("tr");
+      if (firstRow) {
+        firstRow.querySelectorAll("td").forEach(cell => {
+          headers.push(cell.innerText.trim());
+        });
+      }
+    }
+
+    // 给数据行的每个 td 打 data-label
+    const dataRows = headerCells.length > 0
+      ? table.querySelectorAll("tbody tr")
+      : table.querySelectorAll("tr:not(:first-child)");
+
+    dataRows.forEach(row => {
+      row.querySelectorAll("td").forEach((td, i) => {
+        td.setAttribute("data-label", headers[i] || "");
+      });
+    });
   });
 
 

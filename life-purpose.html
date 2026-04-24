@@ -6,41 +6,124 @@
   <title>人生意义</title>
 
   <style>
-    /* 顶部重点文章（紧凑左对齐） */
-    .top-feature-box {
+    /* ------------------------------------
+        板块简介
+    ------------------------------------ */
+    .section-intro {
       max-width: 880px;
-      margin: 20px auto 10px;
-      padding: 16px 20px;
-      background: #f7f3ec;
+      margin: 32px auto 0;
+      padding: 0 20px;
+      text-align: center;
+    }
+
+    .section-intro p {
+      font-size: 18px;
+      color: #555;
+      line-height: 1.9;
+    }
+
+    /* ------------------------------------
+        置顶精选（卡片式）
+    ------------------------------------ */
+    .featured-grid {
+      max-width: 1200px;
+      margin: 36px auto 0;
+      padding: 0 20px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    @media (max-width: 900px) {
+      .featured-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .featured-grid {
+        grid-template-columns: 1fr;
+        padding: 0 16px;
+      }
+    }
+
+    .featured-card {
+      background: #fff;
       border-radius: 10px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+      padding: 22px 22px 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+      border-left: 4px solid #4a5568; /* 深灰色调，象征哲思与沉淀 */
+      display: block;
+      transition: box-shadow 0.2s ease;
+      text-decoration: none;
     }
 
-    .top-feature-box ul {
-      list-style: none;
-      padding-left: 0;
-      margin: 0;
-      font-family: "Caveat", cursive;
+    .featured-card:hover {
+      box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+    }
+
+    .featured-label {
+      font-size: 12px;
+      font-weight: 700;
+      color: #4a5568;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .featured-card h3 {
       font-size: 22px;
-      line-height: 1.4;
-      text-align: left;
+      color: #1a1a1a;
+      margin-bottom: 8px;
+      line-height: 1.3;
     }
 
-    .top-feature-box li {
-      margin: 6px 0;
+    .featured-card p {
+      font-size: 14px;
+      color: #777;
+      line-height: 1.65;
+      margin: 0;
     }
 
-    /* 三列分类（响应式） */
+    /* ------------------------------------
+        分隔线 + 小标题
+    ------------------------------------ */
+    .section-label {
+      max-width: 1200px;
+      margin: 48px auto 0;
+      padding: 0 20px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .section-label span {
+      font-family: "Caveat", cursive;
+      font-size: 24px;
+      color: #555;
+      white-space: nowrap;
+    }
+
+    .section-label::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: #e0e0e0;
+    }
+
+    /* ------------------------------------
+        三列分类
+    ------------------------------------ */
     .category-grid {
       max-width: 1200px;
-      margin: 40px auto;
+      margin: 24px auto 60px;
       padding: 0 20px;
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 40px;
     }
 
-    @media (max-width: 900px) {
+    @media (max-width: 1100px) {
       .category-grid {
         grid-template-columns: repeat(2, 1fr);
       }
@@ -56,92 +139,121 @@
     .category h3 {
       font-size: 26px;
       margin-bottom: 6px;
+      color: #1a1a1a;
     }
 
     .category .category-desc {
-      font-size: 14px;
-      color: #888;
-      margin-bottom: 16px;
+      font-size: 13px;
+      color: #999;
+      margin-bottom: 14px;
       line-height: 1.5;
     }
 
     .category ul {
       padding-left: 20px;
     }
+
+    .category ul li {
+      margin-bottom: 6px;
+      font-size: 15px;
+      line-height: 1.6;
+    }
   </style>
 </head>
 
 <body>
 
-<!-- 顶部重点区块 -->
-<div class="top-feature-box">
-  <ul>
-    <li>置顶 1：<a href="/reflection/purpose.html">人生意义不是找到的，是一点点活出来的</a></li>
-    <li>置顶 2：<a href="/insight/relationship.html">哈佛75年研究告诉我们：关系才是答案</a></li>
-    <li>置顶 3：<a href="/insight/philosophers.html">哲学家们如何看</a></li>
-  </ul>
+<div
+  data-hero="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1600&q=80"
+  data-title="人生意义"
+  data-subtitle="意义不是某种终点，而是我们打量世界的方式"
+></div>
+
+<div class="section-intro">
+  <p>
+    过了五十岁，不再急于向世界证明什么，反而更想回答内心的疑问。<br>
+    意义不在于宏大的成就，而在于与人建立的深刻连接，在于对生命真相的诚实面对。<br>
+    在这里，我整理那些触动我的哲学洞见，以及在柴米油盐中浮现的反思。
+  </p>
+</div>
+
+<div class="featured-grid">
+
+  <a href="/reflection/purpose.html" class="featured-card">
+    <div class="featured-label">✨ 核心反思</div>
+    <h3>活出来的意义</h3>
+    <p>人生意义不是被动“找到”的，而是在日常的每一个决定、每一段关系中一点点“活出来”的。</p>
+  </a>
+
+  <a href="/insight/relationship.html" class="featured-card">
+    <div class="featured-label">✨ 科学洞见</div>
+    <h3>哈佛75年研究的启示</h3>
+    <p>财富与名声终会消散，唯有良好的社会关系能让我们更健康、更幸福。这是关于生命质量的最终答案。</p>
+  </a>
+
+  <a href="/insight/philosophers.html" class="featured-card">
+    <div class="featured-label">✨ 哲学对话</div>
+    <h3>哲学家们如何看人生</h3>
+    <p>从西方的苏格拉底到东方的老庄，跨越千年的智慧碰撞，为我们的当代生活提供参照坐标。</p>
+  </a>
+
+</div>
+
+<div class="section-label">
+  <span>探索维度</span>
 </div>
 
 <main>
-
-  <!-- 三列分类 -->
   <section class="category-grid">
 
-    <!-- 洞见 Insight -->
     <div class="category">
       <h3>💡 洞见 Insight</h3>
-      <p class="category-desc">哲学与研究带来的启发，别人怎么说</p>
+      <p class="category-desc">哲学与科学研究带来的启发，看他人如何解读生命</p>
       <ul id="insight-list">
         <li>加载中...</li>
       </ul>
     </div>
 
-    <!-- 反思 Reflection -->
     <div class="category">
       <h3>🪞 反思 Reflection</h3>
-      <p class="category-desc">结合自身经历，我怎么看这些问题</p>
+      <p class="category-desc">剥离喧嚣，在独处与思辨中寻找自我的答案</p>
       <ul id="reflection-list">
         <li>加载中...</li>
       </ul>
     </div>
 
-    <!-- 叙事 Narrative -->
     <div class="category">
       <h3>📖 叙事 Narrative</h3>
-      <p class="category-desc">故事里的人生道理，我经历了什么</p>
+      <p class="category-desc">真实的故事，生活流淌过的痕迹及其背后的道理</p>
       <ul id="narrative-list">
         <li>加载中...</li>
       </ul>
     </div>
 
   </section>
-
 </main>
 
 <script src="main.js"></script>
 
 <script>
-/* 自动加载三个分类的文章列表 */
 async function loadCategory(folder, elementId) {
   try {
     const res = await fetch(`${folder}/index.json`);
     const articles = await res.json();
-
     const ul = document.getElementById(elementId);
     ul.innerHTML = "";
-
     articles.forEach(a => {
       const li = document.createElement("li");
       li.innerHTML = `<a href="${folder}/${a.file}">${a.title}</a>`;
       ul.appendChild(li);
     });
-
   } catch (e) {
     document.getElementById(elementId).innerHTML =
-      "<li>（未找到文章或 index.json）</li>";
+      "<li>（暂无文章）</li>";
   }
 }
 
+// 分别加载 insight, reflection, narrative 目录
 loadCategory("insight", "insight-list");
 loadCategory("reflection", "reflection-list");
 loadCategory("narrative", "narrative-list");

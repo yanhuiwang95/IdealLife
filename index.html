@@ -3,48 +3,141 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>理想生活</title>
+  <title>理想生活 — 王岩辉</title>
 
   <style>
-    /* 首页主内容区：居中 + 合理宽度 */
+    /* ------------------------------------
+       关于我
+    ------------------------------------ */
     body.index main {
       max-width: 880px;
       margin: 0 auto;
       padding: 0 20px 60px;
     }
 
-    body.index main section {
-      margin-bottom: 36px;
-      padding: 28px 26px;
+    .about-section {
+      margin: 48px 0 0;
+      padding: 36px 32px;
       background: #fff;
-      border-radius: 6px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
     }
 
-    body.index main section h2 {
+    .about-section h2 {
       font-size: 32px;
-      margin-bottom: 10px;
       color: #1f4f7f;
+      margin-bottom: 20px;
     }
 
-    body.index main section p {
+    .about-section p {
       font-size: 17px;
       color: #555;
-      line-height: 1.85;
+      line-height: 1.9;
+      margin-bottom: 14px;
+    }
+
+    .about-section p:last-child {
+      margin-bottom: 0;
+    }
+
+    .about-divider {
+      border: none;
+      border-top: 1px solid #eee;
+      margin: 28px 0;
+    }
+
+    .about-en {
+      color: #888 !important;
+      font-size: 15px !important;
+    }
+
+    /* ------------------------------------
+       导航卡片区
+    ------------------------------------ */
+    .nav-section {
+      margin: 48px 0 0;
+    }
+
+    .nav-section-title {
+      font-family: "Caveat", cursive;
+      font-size: 26px;
+      color: #888;
+      margin-bottom: 20px;
+      padding-left: 2px;
+    }
+
+    .nav-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    @media (max-width: 700px) {
+      .nav-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .nav-card {
+      display: block;
+      padding: 26px 24px;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+      border-top: 4px solid #1f4f7f;
+      transition: box-shadow 0.2s ease, transform 0.2s ease;
+    }
+
+    .nav-card:hover {
+      box-shadow: 0 6px 16px rgba(0,0,0,0.10);
+      transform: translateY(-3px);
+    }
+
+    .nav-card-emoji {
+      font-size: 32px;
+      display: block;
+      margin-bottom: 12px;
+    }
+
+    .nav-card h3 {
+      font-size: 28px;
+      color: #1f4f7f;
+      margin-bottom: 10px;
+    }
+
+    .nav-card p {
+      font-size: 14px;
+      color: #888;
+      line-height: 1.65;
+    }
+
+    .nav-card-tags {
+      margin-top: 14px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .nav-card-tag {
+      font-size: 12px;
+      color: #999;
+      background: #f5f5f5;
+      padding: 3px 10px;
+      border-radius: 20px;
     }
   </style>
 </head>
 
 <body>
 
-<!-- 每页自定义 Hero 图片 -->
-<div 
+<!-- Hero -->
+<div
   data-hero="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee"
-  data-title="思考之旅"
-  data-subtitle="三个简单的法则，更好地规划生活"
+  data-title="理想生活"
+  data-subtitle="记录成长 · 积累热爱 · 感悟人生"
 ></div>
 
-<!-- 三列卡片区块 -->
+<!-- 三法则卡片 -->
 <section class="trip-planning">
   <div class="trip-grid">
     <a href="01-simplicity.html" class="trip-card">
@@ -52,13 +145,11 @@
       <h3>简单法则</h3>
       <p>把复杂的事情拆解，把重要的事情优先，让生活变得更轻盈。</p>
     </a>
-
     <a href="02-the-80-20.html" class="trip-card">
       <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80" alt="8/2 法则">
       <h3>8/2 法则</h3>
       <p>把 80% 的时间留给真正重要的 20% 的事，减少无效努力。</p>
     </a>
-
     <a href="03-system-principle.html" class="trip-card">
       <img src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=800&q=80" alt="系统法则">
       <h3>系统法则</h3>
@@ -67,47 +158,71 @@
   </div>
 </section>
 
-<!-- 主内容 -->
 <main>
-  <section id="about">
-    <h2>记录成长 · 积累热爱 · 感悟人生</h2>
-    <p>这里是我给自己留的一块小小空间，用来整理思绪、记录成长、回看走过的路。希望在多年之后再回来看这些文字时，会对现在的自己心存感激。</p>
-    <p>我是王岩辉，来自中国西安。在北京大学完成了学士与硕士学业后，我前往美国留学，在哥伦比亚大学获得博士学位。毕业后，我长期从事流程自动化、系统优化与智能文件管理等领域的开发与咨询工作。</p>
-    <p>工作之余，我热爱网球、旅行，并始终保持健身习惯。一年多前开始跑步，正在准备第二个半马。在以技术为核心的职业生涯之外，我也一直坚持跨学科的学习与自我挑战。例如，我曾在三年内自学并通过了CFA（注册金融分析师）三级考试。</p>
-    <p>随着人生逐渐进入新阶段，我希望这个空间成为一处沉淀与表达的角落，记录我对健康生活的实践、对技能积累的探索，以及对人生意义的思考。同时，也会分享一些与退休生活规划相关的小工具与见解。</p>
-    <p>我希望在这个记录旅程的过程中，遇见志同道合的朋友，共同创作，共同成长。如果你擅长视频拍摄或剪辑，或像我一样，对健康生活、技能学习、旅行与人生意义充满热情，欢迎联系我 - ywang95@gmail.com</p>
 
-    <h2><br>Recording Growth · Accumulating Passion · Reflecting on Life</h2>
+  <!-- 关于我 -->
+  <div class="about-section">
+    <h2>关于这个空间</h2>
 
-    <p>This is a journal of life, exploration, and the future.</p>
+    <p>人到中年，开始真正思考一件事：健康又有钱，为什么还是不一定幸福？</p>
 
-    <p>My name is Yanhui Wang. I’m from Xi’an, China. After completing my bachelor's and master's degrees at Peking University, I moved to the United States and earned a Ph.D. from Columbia University. Since then, I’ve been working in development and consulting, focusing on process automation, system optimization, and intelligent document management.</p>
+    <p>这个问题把我带向了哲学、神经科学、运动医学和饮食研究，也带向了尼采、叔本华、维克多·弗兰克尔。我开始跑步——不是为了成绩，而是为了弄清楚那些一周六练的跑友，动力究竟从哪里来。我尝试间歇断食，观察身体的反应；我研究力量训练，不是为了六块腹肌，而是为了未来十年的体能自由权。</p>
 
-    <p>Outside of work, I enjoy tennis, traveling, and maintaining an active lifestyle. I began running just over a year ago and am currently training for my second half marathon. Although my career has been rooted in technology, I’ve always pursued interdisciplinary learning and personal challenges. For instance, I self-studied and passed all three levels of the CFA (Chartered Financial Analyst) exams within three years.</p>
+    <p>这个网站，就是这些探索的记录。用三个维度来整理：<strong>应该做的事</strong>（健康、身体、习惯）、<strong>喜欢做的事</strong>（技能、兴趣、旅行）、<strong>有意义的事</strong>（人生意义、哲学思考、自我反思）。</p>
 
-    <p>As I am entering a new chapter of life, I hope this site becomes a place of reflection and expression—where I can share my practices for healthy living, explore new skills, and contemplate the meaning of life. I’ll also offer practical tools and insights related to retirement planning.</p>
+    <p>不是教程，不是攻略，只是一个在认真生活的人，把自己的实验和思考写下来，希望遇见同样在思考这些问题的朋友。</p>
 
-    <p>Through this journey, I hope to connect with like-minded individuals to create and grow together. If you’re skilled in video shooting or editing—or simply share my passion for healthy living, skill-building, travel, and finding purpose — please feel free to reach out - ywang95@gmail.com</p>
+    <hr class="about-divider">
 
+    <p>我是王岩辉，西安人，北京大学本硕，哥伦比亚大学博士。长期从事流程自动化与智能文档管理领域的开发与咨询。业余爱好：网球、跑步、旅行，以及把任何事都试着搞清楚原理。正在训练第二个半马。如果你擅长视频拍摄剪辑，或者对健康、技能学习、旅行和人生意义有热情，欢迎联系 → <a href="mailto:ywang95@gmail.com">ywang95@gmail.com</a></p>
 
+    <hr class="about-divider">
 
+    <p class="about-en">This is a journal of exploration — healthy living, skill-building, and the question of what makes life meaningful. I'm Yanhui Wang, PhD from Columbia University, long-time technologist, half-marathon runner, and someone who takes the question "what should I do with the rest of my life?" very seriously. Feel free to reach out → <a href="mailto:ywang95@gmail.com">ywang95@gmail.com</a></p>
+  </div>
 
-  </section>
+  <!-- 导航卡片 -->
+  <div class="nav-section">
+    <div class="nav-section-title">探索三个维度</div>
 
-  <section id="should-do">
-    <h2>应该做</h2>
-    <p>责任、承诺、成长、选择——这些是我认为「应该做」的事。</p>
-  </section>
+    <div class="nav-grid">
 
-  <section id="like-do">
-    <h2>喜欢做</h2>
-    <p>旅行、学习、写作、发呆，或只是一个安静的午后。</p>
-  </section>
+      <a href="should.html" class="nav-card">
+        <span class="nav-card-emoji">💪</span>
+        <h3>应该做</h3>
+        <p>身体是一切的基础。照顾好它，才有余力热爱生活。</p>
+        <div class="nav-card-tags">
+          <span class="nav-card-tag">饮食</span>
+          <span class="nav-card-tag">运动</span>
+          <span class="nav-card-tag">睡眠</span>
+          <span class="nav-card-tag">心理</span>
+        </div>
+      </a>
 
-  <section id="meaning">
-    <h2>人生意义</h2>
-    <p>也许没有标准答案，但可以有自己的版本。</p>
-  </section>
+      <a href="like.html" class="nav-card">
+        <span class="nav-card-emoji">🎯</span>
+        <h3>喜欢做</h3>
+        <p>退休后的生活，应该有深度钻研的热情，也有随性享受的自在。</p>
+        <div class="nav-card-tags">
+          <span class="nav-card-tag">深度钻研</span>
+          <span class="nav-card-tag">随性享受</span>
+          <span class="nav-card-tag">探索发现</span>
+        </div>
+      </a>
+
+      <a href="meaning.html" class="nav-card">
+        <span class="nav-card-emoji">🌿</span>
+        <h3>人生意义</h3>
+        <p>健康又有钱，为什么还是不幸福？这个问题，值得认真回答。</p>
+        <div class="nav-card-tags">
+          <span class="nav-card-tag">洞见</span>
+          <span class="nav-card-tag">反思</span>
+          <span class="nav-card-tag">叙事</span>
+        </div>
+      </a>
+
+    </div>
+  </div>
 
 </main>
 

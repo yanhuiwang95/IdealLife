@@ -4,163 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>应该做的事</title>
-
-  <style>
-    /* ------------------------------------
-       板块简介
-    ------------------------------------ */
-    .section-intro {
-      max-width: 880px;
-      margin: 32px auto 0;
-      padding: 0 20px;
-      text-align: center;
-    }
-
-    .section-intro p {
-      font-size: 18px;
-      color: #555;
-      line-height: 1.9;
-    }
-
-    /* ------------------------------------
-       置顶精选（卡片式）
-    ------------------------------------ */
-    .featured-grid {
-      max-width: 1200px;
-      margin: 36px auto 0;
-      padding: 0 20px;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-    }
-
-    @media (max-width: 900px) {
-      .featured-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-
-    @media (max-width: 600px) {
-      .featured-grid {
-        grid-template-columns: 1fr;
-        padding: 0 16px;
-      }
-    }
-
-    .featured-card {
-      background: #fff;
-      border-radius: 10px;
-      padding: 22px 22px 20px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.07);
-      border-left: 4px solid #1f4f7f;
-      display: block;
-      transition: box-shadow 0.2s ease;
-    }
-
-    .featured-card:hover {
-      box-shadow: 0 4px 16px rgba(0,0,0,0.12);
-    }
-
-    .featured-label {
-      font-size: 12px;
-      font-weight: 700;
-      color: #1f4f7f;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      margin-bottom: 8px;
-    }
-
-    .featured-card h3 {
-      font-size: 22px;
-      color: #1a1a1a;
-      margin-bottom: 8px;
-      line-height: 1.3;
-    }
-
-    .featured-card p {
-      font-size: 14px;
-      color: #777;
-      line-height: 1.65;
-      margin: 0;
-    }
-
-    /* ------------------------------------
-       分隔线 + 小标题
-    ------------------------------------ */
-    .section-label {
-      max-width: 1200px;
-      margin: 48px auto 0;
-      padding: 0 20px;
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-
-    .section-label span {
-      font-family: "Caveat", cursive;
-      font-size: 24px;
-      color: #555;
-      white-space: nowrap;
-    }
-
-    .section-label::after {
-      content: "";
-      flex: 1;
-      height: 1px;
-      background: #e0e0e0;
-    }
-
-    /* ------------------------------------
-       四列分类
-    ------------------------------------ */
-    .category-grid {
-      max-width: 1200px;
-      margin: 24px auto 60px;
-      padding: 0 20px;
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 40px;
-    }
-
-    @media (max-width: 1100px) {
-      .category-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-
-    @media (max-width: 650px) {
-      .category-grid {
-        grid-template-columns: 1fr;
-        gap: 24px;
-      }
-    }
-
-    .category h3 {
-      font-size: 26px;
-      margin-bottom: 6px;
-      color: #1a1a1a;
-    }
-
-    .category .category-desc {
-      font-size: 13px;
-      color: #999;
-      margin-bottom: 14px;
-      line-height: 1.5;
-    }
-
-    .category ul {
-      padding-left: 20px;
-    }
-
-    .category ul li {
-      margin-bottom: 6px;
-      font-size: 15px;
-      line-height: 1.6;
-    }
-  </style>
+  <meta name="description" content="饮食、运动、睡眠、心理：身体是一切的基础。">
 </head>
 
-<body>
+<body class="cols-4">
 
 <!-- Hero -->
 <div
@@ -206,69 +53,35 @@
 </div>
 
 <main>
-  <!-- 四列分类 -->
   <section class="category-grid">
 
     <div class="category">
       <h3>🥗 饮食</h3>
       <p class="category-desc">吃什么、怎么吃，让食物成为最好的药</p>
-      <ul id="diet-list">
-        <li>加载中...</li>
-      </ul>
+      <ul data-folder="diet"><li>加载中...</li></ul>
     </div>
 
     <div class="category">
       <h3>🏃‍♂️ 运动</h3>
       <p class="category-desc">练出韧性，抵抗衰老，保留行动自由</p>
-      <ul id="exercise-list">
-        <li>加载中...</li>
-      </ul>
+      <ul data-folder="exercise"><li>加载中...</li></ul>
     </div>
 
     <div class="category">
       <h3>😴 睡眠</h3>
       <p class="category-desc">不是管住自己，而是放过自己</p>
-      <ul id="sleep-list">
-        <li>加载中...</li>
-      </ul>
+      <ul data-folder="sleep"><li>加载中...</li></ul>
     </div>
 
     <div class="category">
       <h3>🧠 心理</h3>
       <p class="category-desc">内在稳定，才是一切的根基</p>
-      <ul id="mind-list">
-        <li>加载中...</li>
-      </ul>
+      <ul data-folder="mind"><li>加载中...</li></ul>
     </div>
 
   </section>
 </main>
 
 <script src="main.js"></script>
-
-<script>
-async function loadCategory(folder, elementId) {
-  try {
-    const res = await fetch(`${folder}/index.json`);
-    const articles = await res.json();
-    const ul = document.getElementById(elementId);
-    ul.innerHTML = "";
-    articles.forEach(a => {
-      const li = document.createElement("li");
-      li.innerHTML = `<a href="${folder}/${a.file}">${a.title}</a>`;
-      ul.appendChild(li);
-    });
-  } catch (e) {
-    document.getElementById(elementId).innerHTML =
-      "<li>（暂无文章）</li>";
-  }
-}
-
-loadCategory("diet", "diet-list");
-loadCategory("exercise", "exercise-list");
-loadCategory("sleep", "sleep-list");
-loadCategory("mind", "mind-list");
-</script>
-
 </body>
 </html>

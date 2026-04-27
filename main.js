@@ -700,6 +700,62 @@ document.addEventListener("DOMContentLoaded", function () {
       background: var(--bg-card);
       margin-top: 40px;
     }
+
+    /* ============================================================
+       MOBILE REFINEMENTS (≤ 600px)
+       Single consolidated block — keep it last so it overrides
+    ============================================================ */
+    @media (max-width: 600px) {
+      body { font-size: 16px; line-height: 1.8; }
+
+      /* Hero — shorter, tighter typography */
+      .hero { padding: 80px 20px 70px; margin-bottom: 28px; }
+      .hero h1 { font-size: 38px; margin-bottom: 12px; }
+      .hero p  { font-size: 17px; margin-bottom: 16px; line-height: 1.55; }
+
+      /* Index — about + nav cards */
+      body.index main { padding: 0 16px 40px; }
+      body.index .about-section { padding: 24px 20px; margin-top: 32px; }
+      body.index .about-section h2 { font-size: 26px; margin-bottom: 14px; }
+      body.index .about-section p { font-size: 15px; line-height: 1.8; }
+      body.index .about-en { font-size: 14px !important; }
+      body.index .about-divider { margin: 20px 0; }
+      body.index .nav-section { margin-top: 32px; }
+      body.index .nav-section-title { font-size: 22px; margin-bottom: 14px; }
+      body.index .nav-card { padding: 22px 20px; }
+      body.index .nav-card-emoji { font-size: 28px; margin-bottom: 10px; }
+      body.index .nav-card h3 { font-size: 24px; }
+      body.index .nav-card p { font-size: 13px; }
+      .trip-card h3 { font-size: 22px; margin: 14px 0 6px; }
+      .trip-card p  { font-size: 14px; padding: 0 16px 16px; }
+
+      /* Category */
+      body.category .section-intro { margin-top: 24px; padding: 0 16px; }
+      body.category .section-intro p { font-size: 15px; line-height: 1.8; }
+      body.category .featured-grid { margin-top: 24px; gap: 14px; }
+      body.category .featured-card { padding: 18px 18px 16px; }
+      body.category .featured-card h3 { font-size: 19px; }
+      body.category .featured-card p  { font-size: 13px; }
+      body.category .section-label { margin-top: 32px; padding: 0 16px; }
+      body.category .section-label span { font-size: 20px; }
+      body.category .category-grid { margin: 20px auto 40px; padding: 0 16px; }
+      body.category .category h3 { font-size: 22px; }
+      body.category .category .category-desc { font-size: 12px; }
+
+      /* Article */
+      body.article main { margin: 24px auto; padding: 0 12px 40px; }
+      body.article article { padding: 22px 18px; }
+      body.article ol, body.article ul { padding-left: 22px; margin: 14px 0; }
+      body.article li { font-size: 16px; padding-left: 12px; }
+
+      /* Details accordion */
+      details { padding: 12px 16px !important; margin: 18px 0 !important; max-height: 44px; }
+      details summary { font-size: 16px !important; }
+      details p { font-size: 14px !important; line-height: 1.7 !important; }
+
+      /* Footer */
+      footer { padding: 16px; font-size: 13px; margin-top: 28px; }
+    }
   `;
   document.head.appendChild(style);
 

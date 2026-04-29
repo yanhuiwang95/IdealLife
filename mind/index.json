@@ -1,7 +1,9 @@
 [
   { "title": "心也需要日常的照护", "file": "bodymind.html" },
-  { "title": "冥想极简实践", "file": "meditation-practice.html" },
-  { "title": "情绪", "file": "emotion.html" },
-  { "title": "心态，与世界互动时的默认设定", "file": "mentality.html" },
-  { "title": "认知", "file": "cognition.html" }
+  { "title": "心理能量的逻辑链条", "file": "mindladder.html" },
+  { "title": "情绪（Emotion)", "file": "emotion.html" },
+  { "title": "内耗（Friction)", "file": "friction.html" },
+  { "title": "心态（Mindset)", "file": "mentality.html" },
+  { "title": "认知（Cognition）", "file": "cognition.html" },
+  { "title": "冥想极简实践", "file": "meditation-practice.html" }
 ]

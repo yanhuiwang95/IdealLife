@@ -799,7 +799,7 @@ document.addEventListener("DOMContentLoaded", function () {
           <ul>
             <li><a href="/should.html">应该做</a></li>
             <li><a href="/like.html">喜欢做</a></li>
-            <li><a href="/life-purpose.html">光影随笔</a></li>
+            <li><a href="/life-purpose.html">共振场</a></li>
           </ul>
         </nav>
       </div>

@@ -2,10 +2,9 @@
   { "title": "为什么需要一个爱好", "file": "why-hobby.html" },
   { "title": "垂直还是水平", "file": "vertical-horizontal.html" },
   { "title": "学习如何学习", "file": "learning-how-to-learn.html" },
-  { "title": "系列1：方向选择", "file": "01-learn-direction.html" },
-  { "title": "系列2：难度选择", "file": "02-learn-difficulty.html" },
-  { "title": "系列3：方法", "file": "03-learn-methodology.html" },
-  { "title": "系列4：巩固（间隔与提取）", "file": "04-learn-reinforce.html" },
-  { "title": "系列5：精进（刻意练习）", "file": "05-learn-deliberate.html" }
-]
+  { "title": "系列1：选什么 - 方向", "file": "01-learn-direction.html" },
+  { "title": "系列2：多难 - 刚刚好", "file": "02-learn-difficulty.html" },
+  { "title": "系列3：怎么学 - 组块", "file": "03-learn-methodology.html" },
+  { "title": "系列4：留多久 - 间隔", "file": "04-learn-reinforce.html" },
+  { "title": "系列5：走多远 - 复利", "file": "05-learn-deliberate.html" }
 
